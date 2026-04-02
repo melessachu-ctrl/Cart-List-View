@@ -945,7 +945,8 @@ body {
   inset: 0;
   max-width: var(--phone-width);
   margin: 0 auto;
-  z-index: 300;
+  /* 高於結帳彈窗 (400)、低於付款成功頁 (500)；與 DOM 順序一併避免線上舊快取時疊錯 */
+  z-index: 480;
   display: none;
 }
 
@@ -1326,6 +1327,30 @@ body {
   font-weight: 400;
   color: var(--text-primary);
   line-height: 1.4;
+}
+
+.checkout-confirm-timeslot-btn {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: right;
+  color: inherit;
+}
+
+.checkout-confirm-timeslot-btn:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .checkout-confirm-row__value-wrap {
