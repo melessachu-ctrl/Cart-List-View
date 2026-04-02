@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>HKTVmall 購物車</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" data-node-id="15619:11971">
+      <header class="page-header" data-name="Header">
+        <div class="status-bar" data-name="Status Bar - iPhone">
+          <div class="status-bar__time">9:15</div>
+          <div class="status-bar__spacer" style="width: 124px; height: 10px"></div>
+          <div class="status-bar__icons">
+            <img src="https://www.figma.com/api/mcp/asset/1292f4a8-2202-4ba0-947b-871e9744759d" alt="" width="19" height="12" />
+            <img src="https://www.figma.com/api/mcp/asset/25b7c8aa-ec9e-404c-bcf0-9a8eb288dd28" alt="" width="17" height="12" />
+            <img src="https://www.figma.com/api/mcp/asset/d98bc7fb-be70-4cbe-bb7c-2b63aded3261" alt="" width="27" height="13" />
+          </div>
+        </div>
+        <nav class="nav-bar" data-name="NavBar">
+          <div class="nav-bar__delivery" data-name="Delivery Info">
+            <!-- DS: icon-location-regular-filled (4955:36) — Heroicons MapPin solid, 24px artboard -->
+            <svg
+              class="nav-icon nav-icon--pin"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+              />
+            </svg>
+            <span class="label">送至</span>
+            <span class="addr">新界 大圍 栢傲庄 1期 1A 28樓 B室</span>
+            <!-- DS: icon-chevrondown-small-outlined (3096:139) — Heroicons ChevronDown outline -->
+            <svg
+              class="nav-icon nav-icon--chev"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path d="M13.2338 7.74167L10.0005 10.975L6.76714 7.74167C6.44214 7.41667 5.91714 7.41667 5.59214 7.74167C5.26714 8.06667 5.26714 8.59167 5.59214 8.91667L9.41714 12.7417C9.74214 13.0667 10.2671 13.0667 10.5921 12.7417L14.4171 8.91667C14.7421 8.59167 14.7421 8.06667 14.4171 7.74167C14.0921 7.425 13.5588 7.41667 13.2338 7.74167Z" fill="#8B8B8B"/>
+            </svg>
+          </div>
+          <div class="nav-bar__actions" data-name="Right Elements">
+            <!-- DS: icon-forward-regular-outlined (3023:423) — Heroicons ArrowUpRight outline -->
+            <button type="button" class="nav-bar__icon-btn" aria-label="分享">
+              <svg
+                class="nav-icon nav-icon--action"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+              <path d="M10.0134 16.52C8.61336 16.7467 7.18669 17.3867 6.13336 18.32C4.98669 19.32 4.41336 21.16 2.46669 20.48C0.520022 19.8 0.960022 17.6667 1.29336 16.1467C2.20002 11.9467 5.77336 8.54667 10.0134 7.85333C10.0534 7.06667 9.96002 6.22667 10.0134 5.44C10.1334 3.77333 11.72 2.78667 13.2534 3.46667C16.28 5.68 19.2 8.06667 22.1867 10.3467C23.08 11.2533 23.0667 12.7467 22.1334 13.6267L13.6667 20.2133C12.4 21.3333 10.0267 20.2933 10.0267 18.6267V16.4933L10.0134 16.52ZM11.96 14.3733C12.0134 14.44 12.0134 14.5333 12.0134 14.6133C12.12 15.8533 11.9334 17.24 12.0134 18.4933C12.0267 18.6133 12.1867 18.72 12.3067 18.6933L20.84 11.9733C20.84 11.8667 20.7334 11.76 20.6667 11.6933C20.16 11.2 19.28 10.6133 18.6934 10.16C16.7467 8.64 14.7734 7.04 12.8 5.57333C12.6134 5.42667 12.2534 5.05333 12.0534 5.33333L11.9734 9.53333C11.8934 9.66667 11.2667 9.64 11.1067 9.65333C6.81335 10.2 3.22669 13.4933 3.04002 17.96C3.04002 18.1067 2.98669 18.56 3.16002 18.5867C3.54669 18.2533 3.82669 17.76 4.18669 17.3733C5.90669 15.5333 8.70669 14.4 11.2 14.2933C11.3467 14.2933 11.8667 14.2667 11.96 14.3467V14.3733Z" fill="#1C1C25" "=""></path>
+              </svg>
+            </button>
+            <!-- DS: icon-edit-regular-outlined (3023:433) — Heroicons Pencil outline -->
+            <button type="button" class="nav-bar__icon-btn" aria-label="編輯">
+              <svg
+                class="nav-icon nav-icon--action"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+              <path d="M13.2168 3.50507C14.4168 2.3584 15.8968 2.46507 17.1901 3.3584C19.4434 4.90507 20.8968 6.3984 18.9768 9.05174C16.4034 12.6117 13.4301 15.9984 10.7634 19.5051C10.2168 20.0117 9.64342 20.2784 8.95008 20.4917C8.15008 20.7317 6.63008 21.1717 5.83009 21.2651C4.88342 21.3717 4.19008 20.9317 4.03008 19.9851C4.17675 18.2251 3.63008 16.2117 4.55008 14.6117C7.01675 11.4117 9.45675 8.17174 11.9768 5.01174C12.3768 4.5184 12.7501 3.94507 13.2034 3.50507H13.2168ZM15.1501 4.66507C14.6034 4.73174 14.2034 5.42507 13.8968 5.8384L17.0434 8.25174C17.4434 7.6784 18.1634 7.10507 17.6834 6.34507C17.5234 6.09174 16.0034 4.9184 15.7101 4.77174C15.4968 4.66507 15.3901 4.62507 15.1368 4.66507H15.1501ZM5.99008 16.4651C5.91008 17.3184 6.05675 18.2917 5.99008 19.1584C6.83008 18.9051 7.84342 18.7984 8.67009 18.4917C9.49675 18.1851 10.2168 17.0117 10.7634 16.3317C12.4301 14.2251 14.0434 12.0651 15.7234 9.97174L15.7768 9.8384L12.6434 7.45174L6.31008 15.5717C6.15008 15.8251 6.03009 16.1851 6.00342 16.4784L5.99008 16.4651Z" fill="#1C1C25"/>
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <main class="main-scroll" data-name="List">
+        <section class="section-delivery-time" data-name="Delivery Time">
+          <div class="delivery-card" data-name="#">
+            <p class="delivery-card__title">HKTVmall 送貨時間：</p>
+
+            <div class="option-3hr" data-node-id="15619:11963">
+              <div class="radio-img" style="position: relative; width: 24px; height: 24px">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/fff61bf6-fd28-4eee-b59d-6652d6838905"
+                  alt=""
+                  style="position: absolute; inset: 8.33%; width: calc(100% - 16.66%); height: calc(100% - 16.66%)"
+                />
+              </div>
+              <div class="option-3hr__body">
+                <div class="option-3hr__row1">
+                  <span class="badge-fast">快!</span>
+                  <span class="t-bold">3小時送達</span>
+                  <span class="t-reg" id="option-3hr-timeslot-text">今日 12:30-15:00</span>
+                </div>
+                <div class="option-3hr__row2">
+                  <span>只購買</span>
+                  <span class="highlight">3小時送達</span>
+                  <span>商品</span>
+                </div>
+              </div>
+              <div class="cutoff-badge" data-name="Cutoff">
+                <span>截單時間： 10AM</span>
+              </div>
+            </div>
+
+            <div class="option-merge" data-name="Delivery Time">
+              <div class="radio-img" style="position: relative; width: 24px; height: 24px">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/5d8b5b28-ba44-41c8-9964-6d5d2bcaf3ba"
+                  alt=""
+                  style="position: absolute; inset: 8.33%; width: calc(100% - 16.66%); height: calc(100% - 16.66%)"
+                />
+                <img
+                  src="https://www.figma.com/api/mcp/asset/88274e6e-4039-46bc-91b8-ee240bbf501e"
+                  alt=""
+                  style="position: absolute; inset: 8.33%; width: calc(100% - 16.66%); height: calc(100% - 16.66%)"
+                />
+              </div>
+              <div class="option-merge__text">
+                <strong>一併送</strong>
+                <span id="merge-timeslot-text">明天 15:00-18:00</span>
+              </div>
+              <button type="button" class="btn-change" id="btn-change-time">更改</button>
+            </div>
+          </div>
+        </section>
+
+        <div class="select-all-bar" data-name="Select all">
+          <div class="left">
+            <div class="cb-img" aria-hidden="true">
+              <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/dcb92bd8-317e-485c-b0eb-e9e972f692b2" alt="" />
+              <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/6efa2acb-5b2f-4966-8028-f724e1930066" alt="" />
+            </div>
+            <span>全選</span>
+          </div>
+          <div class="img-sizes">
+            <span>圖片:</span>
+            <div class="sizes" role="group" aria-label="圖片大小">
+              <button type="button" data-size="L">大</button>
+              <button type="button" data-size="M">中</button>
+              <button type="button" data-size="S" class="is-active">小</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-padding" data-name="Cart">
+          <div class="cart-block-stack">
+          <div class="hktvmall-group" id="hktvmall-group" data-name="HKTVmall">
+            <div class="hktvmall-group__head" data-name="Delivery Title">
+              <div class="cb-white" aria-hidden="true">
+                <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/a64714aa-7447-4d2e-80dd-2e38ad16f43e" alt="" />
+                <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/6efa2acb-5b2f-4966-8028-f724e1930066" alt="" />
+              </div>
+              <div class="title-text">
+                <span>由</span>
+                <span>HKTVmall</span>
+                <span>運送</span>
+              </div>
+              <img
+                class="chev"
+                src="https://www.figma.com/api/mcp/asset/06af69a2-603f-404e-acdc-00fc8e403523"
+                alt=""
+                id="toggle-hktvmall"
+              />
+            </div>
+
+            <div class="hktvmall-group__body" data-name="List">
+              <div class="threshold-box" data-name="Threshold">
+                <div class="threshold-line">
+                  <img class="ico" src="https://www.figma.com/api/mcp/asset/2371ee45-a8bd-4b8f-a7cc-f00b4aa32f30" alt="" />
+                  <p>所有商品 到店自取免運費</p>
+                </div>
+                <div class="threshold-line threshold-line--free">
+                  <img class="ico" src="https://www.figma.com/api/mcp/asset/ed3205a8-dce6-4673-9295-6e0ed69e72cd" alt="" />
+                  <p>已享免運費 送上門</p>
+                </div>
+                <div class="threshold-line threshold-line--unmet">
+                  <img class="ico" src="https://www.figma.com/api/mcp/asset/14171d16-8be4-4bf2-805f-c8cc3ef90fc9" alt="" />
+                  <p>
+                    買多 <strong id="hkt-threshold-remaining">$300.00</strong> 可享免運費送上門
+                  </p>
+                  <button type="button" class="threshold-link">
+                    湊單
+                    <img src="https://www.figma.com/api/mcp/asset/315c3f54-112c-415a-9f97-c30dd21ef212" alt="" width="16" height="16" />
+                  </button>
+                </div>
+                <div class="threshold-progress-track" aria-hidden="true">
+                  <div class="threshold-progress-fill" id="hkt-threshold-progress"></div>
+                </div>
+              </div>
+
+              <div class="delivery-sub delivery-sub--3" data-name="3hr Delivery Container">
+                <div class="delivery-sub__head" data-name="Delivery Title">
+                  <div class="sub-head-cb" aria-hidden="true">
+                    <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                    <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                  </div>
+                  <span class="sub-title">3小時送達</span>
+                  <span class="sub-hint">*10AM前落單 今日12:30-15:00送達</span>
+                </div>
+                <div class="product-rows" data-name="3hr Delivery Items">
+                  <div class="row-divider">
+                  </div>
+                  <div class="product-row">
+                    <article class="product-card">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/6ec7340d-3e93-407e-b117-89e9ea97e4c0" alt="" />
+                        <div class="grad"></div>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label">3小時送達</span>
+                        <p class="price">$11.0</p>
+                      </div>
+                    </article>
+                    <article class="product-card">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/ff5b7439-22f3-4d41-bb96-fe8c771eee3c" alt="" />
+                        <div class="grad"></div>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label">3小時送達</span>
+                        <p class="price">$89.0</p>
+                      </div>
+                    </article>
+                    <article class="product-card">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/f4e65fb8-e453-4b43-bab4-3bc32556f915" alt="" />
+                        <div class="grad"></div>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label">3小時送達</span>
+                        <p class="price">$10.0</p>
+                      </div>
+                    </article>
+                    <article class="product-card">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/4b3a634e-a4d2-4b8e-b035-d1316e34b225" alt="" />
+                        <div class="grad"></div>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label">3小時送達</span>
+                        <p class="price">$23.0</p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+
+              <div class="delivery-sub delivery-sub--8" data-name="8hr">
+                <div class="delivery-sub__head">
+                  <div class="sub-head-cb" aria-hidden="true">
+                    <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                    <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                  </div>
+                  <span class="sub-title">8小時送達</span>
+                  <span class="sub-hint">*1PM前落單 今日18:00-21:00送達</span>
+                </div>
+                <div class="product-rows">
+                  <div class="row-divider">
+                  </div>
+                  <div class="product-row">
+                    <article class="product-card product-card--8">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/202d3315-01b6-44a8-bdcb-8065d11a691c" alt="" />
+                        <div class="grad"></div>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label">8小時送達</span>
+                        <p class="price">$28.0</p>
+                      </div>
+                    </article>
+                    <article class="product-card product-card--8">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/a1b8eb76-6428-45b3-a065-2d1333b8e52c" alt="" />
+                        <div class="grad"></div>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label">8小時送達</span>
+                        <p class="price">$40.0</p>
+                      </div>
+                    </article>
+                    <article class="product-card product-card--8">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/1bd0ddc3-e075-430c-9cd7-8fdbd3915624" alt="" />
+                        <div class="grad"></div>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label">8小時送達</span>
+                        <p class="price">$90.0</p>
+                      </div>
+                    </article>
+                    <article class="product-card product-card--8">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/c27b5953-fa69-4062-b81f-28f2cd0704cc" alt="" />
+                        <div class="grad"></div>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label">8小時送達</span>
+                        <p class="price">$24.5</p>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="product-row">
+                    <article class="product-card product-card--8">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/978ea72a-2abb-4716-9ed4-530e3d690836" alt="" />
+                        <div class="grad"></div>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label">8小時送達</span>
+                        <p class="price">$26.0</p>
+                      </div>
+                    </article>
+                    <article class="product-card product-card--8">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/4ed9bd83-2aea-4385-8eda-fd5ebf3265a1" alt="" />
+                        <div class="grad"></div>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label">8小時送達</span>
+                        <p class="price">$17.0</p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 明天送達（Figma：Tmr，橙底區塊於 HKTVmall 卡片內） -->
+              <div class="delivery-sub delivery-sub--tmr" data-name="Tmr">
+                <div class="delivery-sub__head delivery-sub__head--tmr">
+                  <div class="sub-head-cb" aria-hidden="true">
+                    <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                    <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                  </div>
+                  <span class="sub-title sub-title--tmr">明天送達</span>
+                </div>
+                <div class="product-rows product-rows--tmr">
+                  <div class="row-divider">
+                  </div>
+                  <div class="product-row">
+                    <article class="product-card product-card--tmr">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/61690ec0-ca52-48d2-8cad-0ebbfab679d7" alt="" />
+                        <div class="grad"></div>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label delivery-label--tmr">明天送達</span>
+                        <p class="price">$244.9</p>
+                      </div>
+                    </article>
+                    <article class="product-card product-card--tmr">
+                      <div class="img-wrap">
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/d42715fc-a0c1-4d21-a0ec-4156c46209db" alt="" />
+                        <div class="grad"></div>
+                        <span class="corner-qty-badge" aria-hidden="true">x2</span>
+                        <div class="check-pos" aria-hidden="true">
+                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                        </div>
+                        <button type="button" class="qty" aria-label="更改數量">x1</button>
+                      </div>
+                      <div class="info">
+                        <span class="delivery-label delivery-label--tmr">明天送達</span>
+                        <p class="price">$120.0</p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 由香港蘇寧旗艦店運送 -->
+          <div class="merchant-group" id="merchant-group" data-name="Merchant">
+            <div class="merchant-group__head" id="toggle-merchant-head">
+              <div class="cb-white cb-white--on-blue" aria-hidden="true">
+                <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/a64714aa-7447-4d2e-80dd-2e38ad16f43e" alt="" />
+                <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/6efa2acb-5b2f-4966-8028-f724e1930066" alt="" />
+              </div>
+              <div class="merchant-group__title">
+                <span>由</span>
+                <span class="merchant-name">香港蘇寧旗艦店</span>
+                <span>運送</span>
+                <span class="merchant-hint">(3-4日送達)</span>
+              </div>
+              <img class="chev merchant-chev" src="https://www.figma.com/api/mcp/asset/06af69a2-603f-404e-acdc-00fc8e403523" alt="" id="toggle-merchant-chev" />
+            </div>
+            <div class="merchant-group__body" id="merchant-group-body">
+              <div class="merchant-threshold">
+                <div class="merchant-threshold__inner">
+                  <div class="merchant-threshold__row">
+                    <img class="merchant-threshold__ico" src="https://www.figma.com/api/mcp/asset/ed602c61-f464-40e5-9c71-3f76bcccf1d0" alt="" />
+                    <p class="merchant-threshold__txt">
+                      商戶派送商品 <strong>不能於自取點自取</strong>
+                    </p>
+                  </div>
+                  <div class="merchant-threshold__row merchant-threshold__row--delivery">
+                    <img class="merchant-threshold__ico" src="https://www.figma.com/api/mcp/asset/14171d16-8be4-4bf2-805f-c8cc3ef90fc9" alt="" />
+                    <p class="merchant-threshold__txt merchant-threshold__txt--grow">
+                      買多 <strong>$201.00</strong> 可享免運費送上門
+                    </p>
+                    <button type="button" class="merchant-threshold__link">
+                      湊單
+                      <img src="https://www.figma.com/api/mcp/asset/315c3f54-112c-415a-9f97-c30dd21ef212" alt="" width="16" height="16" />
+                    </button>
+                  </div>
+                </div>
+                <div class="merchant-progress-track">
+                  <div class="merchant-progress-fill"></div>
+                </div>
+              </div>
+              <div class="product-row merchant-sku-row">
+                <article class="product-card">
+                  <div class="img-wrap">
+                    <img class="photo" src="https://www.figma.com/api/mcp/asset/15b73d85-61d0-4e6f-bae7-c842f61467c6" alt="" />
+                    <div class="grad"></div>
+                    <div class="check-pos" aria-hidden="true">
+                      <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
+                      <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                    </div>
+                    <button type="button" class="qty" aria-label="更改數量">x1</button>
+                  </div>
+                  <div class="info">
+                    <span class="delivery-label delivery-label--merchant">商戶派送</span>
+                    <p class="price">$299.0</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="page-sections">
+          <!-- 暫時缺貨/無法購買 -->
+          <section class="sheet-card sheet-card--oos" data-name="OOS">
+            <div class="sheet-card__title-row">
+              <h2 class="sheet-card__title">暫時缺貨/無法購買 (5)</h2>
+              <img src="https://www.figma.com/api/mcp/asset/027f5248-15e2-4229-b63f-d868ec5f3869" alt="" width="24" height="24" />
+            </div>
+            <div class="oos-row">
+              <div class="oos-item">
+                <div class="oos-img">
+                  <img src="https://www.figma.com/api/mcp/asset/f1851296-dc0d-4e34-910a-6a8a1e3fd92d" alt="" />
+                  <button type="button" class="oos-fav" aria-label="收藏">
+                    <img src="https://www.figma.com/api/mcp/asset/88ec4636-f9b5-4dc2-9231-febb11d18152" alt="" width="18" height="18" />
+                  </button>
+                  <div class="oos-overlay"><span>暫時缺貨</span></div>
+                </div>
+                <button type="button" class="oos-remove">
+                  <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                  移除
+                </button>
+              </div>
+              <div class="oos-item">
+                <div class="oos-img">
+                  <img src="https://www.figma.com/api/mcp/asset/862248a7-324b-4fb1-be27-e6dbd1a73870" alt="" />
+                  <button type="button" class="oos-fav" aria-label="收藏">
+                    <img src="https://www.figma.com/api/mcp/asset/88ec4636-f9b5-4dc2-9231-febb11d18152" alt="" width="18" height="18" />
+                  </button>
+                  <div class="oos-overlay"><span>店舖休息</span></div>
+                </div>
+                <button type="button" class="oos-remove">
+                  <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                  移除
+                </button>
+              </div>
+              <div class="oos-item">
+                <div class="oos-img">
+                  <img src="https://www.figma.com/api/mcp/asset/1cfd5b37-e2b2-408e-9924-b30ddc54aeb6" alt="" />
+                  <div class="oos-overlay"><span>已失效</span></div>
+                </div>
+                <button type="button" class="oos-remove">
+                  <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                  移除
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- 過去30日未買 -->
+          <section class="sheet-card" data-name="Not Yet Purchased">
+            <div class="sheet-card__title-row sheet-card__title-row--stack">
+              <div>
+                <h2 class="sheet-card__title">過去30日未買 (20)</h2>
+                <p class="sheet-card__sub">商品若擺放超過90日，系統將自動清除</p>
+              </div>
+              <img src="https://www.figma.com/api/mcp/asset/027f5248-15e2-4229-b63f-d868ec5f3869" alt="" width="24" height="24" />
+            </div>
+            <div class="np-row">
+              <div class="np-card">
+                <div class="np-img-wrap">
+                  <img src="https://www.figma.com/api/mcp/asset/62cecc19-3bbf-4531-8785-e7b3cd41df3e" alt="" />
+                  <div class="np-promo">
+                    <img class="np-promo-decor" src="https://www.figma.com/api/mcp/asset/52776fe8-4b85-4111-91b4-1fa87bc2e592" alt="" />
+                    買滿$280減$28
+                  </div>
+                  <button type="button" class="np-fav" aria-label="收藏">
+                    <img src="https://www.figma.com/api/mcp/asset/88ec4636-f9b5-4dc2-9231-febb11d18152" alt="" width="18" height="18" />
+                  </button>
+                </div>
+                <p class="np-title">BLACKMORES - 高濃度無腥味魚油丸 迷你膠囊 400 粒</p>
+                <div class="np-price">
+                  <span class="np-rp">$285.0</span>
+                  <span class="np-sp">$218.0</span>
+                </div>
+                <div class="np-actions">
+                  <button type="button" class="oos-remove np-remove">
+                    <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                    移除
+                  </button>
+                  <button type="button" class="np-cart" aria-label="加入購物車">
+                    <img src="https://www.figma.com/api/mcp/asset/4acc4842-798e-4600-a002-72bf00b60767" alt="" width="20" height="20" />
+                  </button>
+                </div>
+              </div>
+              <div class="np-card">
+                <div class="np-img-wrap">
+                  <img src="https://www.figma.com/api/mcp/asset/61fde1a5-9946-425f-b58a-33afe1b4042a" alt="" />
+                  <div class="np-promo">
+                    <img class="np-promo-decor" src="https://www.figma.com/api/mcp/asset/52776fe8-4b85-4111-91b4-1fa87bc2e592" alt="" />
+                    $25.9換購鳥龍茶
+                  </div>
+                  <button type="button" class="np-fav" aria-label="收藏">
+                    <img src="https://www.figma.com/api/mcp/asset/88ec4636-f9b5-4dc2-9231-febb11d18152" alt="" width="18" height="18" />
+                  </button>
+                </div>
+                <p class="np-title">維他 - 錫蘭檸檬茶 250ml x 6包裝 (新舊包裝隨機發送)</p>
+                <div class="np-price">
+                  <span class="np-rp">$19.9</span>
+                  <span class="np-sp">$15.5</span>
+                </div>
+                <div class="np-actions">
+                  <button type="button" class="oos-remove np-remove">
+                    <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                    移除
+                  </button>
+                  <button type="button" class="np-cart" aria-label="加入購物車">
+                    <img src="https://www.figma.com/api/mcp/asset/4acc4842-798e-4600-a002-72bf00b60767" alt="" width="20" height="20" />
+                  </button>
+                </div>
+              </div>
+              <div class="np-card">
+                <div class="np-img-wrap">
+                  <img src="https://www.figma.com/api/mcp/asset/f536c3dd-2007-48bf-8937-ea1f60166f86" alt="" />
+                  <div class="np-promo">
+                    <img class="np-promo-decor" src="https://www.figma.com/api/mcp/asset/52776fe8-4b85-4111-91b4-1fa87bc2e592" alt="" />
+                    買滿$388減$28
+                  </div>
+                  <button type="button" class="np-fav" aria-label="收藏">
+                    <img src="https://www.figma.com/api/mcp/asset/88ec4636-f9b5-4dc2-9231-febb11d18152" alt="" width="18" height="18" />
+                  </button>
+                </div>
+                <p class="np-title">滴潔 - [2支優惠裝] 99.9%除菌 高效去除油漬 洗潔精 800ml</p>
+                <div class="np-price">
+                  <span class="np-rp">$49.0</span>
+                  <span class="np-sp">$37.0</span>
+                </div>
+                <div class="np-actions">
+                  <button type="button" class="oos-remove np-remove">
+                    <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                    移除
+                  </button>
+                  <button type="button" class="np-cart" aria-label="加入購物車">
+                    <img src="https://www.figma.com/api/mcp/asset/4acc4842-798e-4600-a002-72bf00b60767" alt="" width="20" height="20" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 購物靈感 -->
+          <section class="sheet-card sheet-card--inspire" data-name="Shopping Idea">
+            <div class="sheet-card__title-row sheet-card__title-row--inspire">
+              <h2 class="sheet-card__title">購物靈感</h2>
+              <div class="inspire-see-all">
+                <span>查看全部</span>
+                <img src="https://www.figma.com/api/mcp/asset/027f5248-15e2-4229-b63f-d868ec5f3869" alt="" width="24" height="24" />
+              </div>
+            </div>
+            <div class="inspire-body">
+              <div class="inspire-tabs" role="tablist">
+                <button type="button" class="inspire-tab is-active" role="tab" data-tab="0">專屬優惠</button>
+                <button type="button" class="inspire-tab" role="tab" data-tab="1">曾經購買</button>
+                <button type="button" class="inspire-tab" role="tab" data-tab="2">我的清單</button>
+              </div>
+              <div class="inspire-grid">
+                <article class="inspire-card">
+                  <div class="inspire-card__img">
+                    <img src="https://www.figma.com/api/mcp/asset/07487bf4-ac70-49b5-8fd4-4df3187b3cbe" alt="" />
+                    <div class="inspire-promo">
+                      <img src="https://www.figma.com/api/mcp/asset/2432f67a-431d-4dc9-91de-d38620c6bb98" alt="" class="inspire-promo-corner" />
+                      108/198/398...
+                    </div>
+                  </div>
+                  <div class="inspire-card__body">
+                    <p class="inspire-name">礦物質水原箱 750亳升</p>
+                    <p class="inspire-spec">24x750毫升</p>
+                    <p class="inspire-delivery">8小時送達</p>
+                    <p class="inspire-rp">$9,099.0</p>
+                    <p class="inspire-ppp-label">專屬價</p>
+                    <p class="inspire-ppp">$60.00</p>
+                  </div>
+                  <button type="button" class="inspire-cart" aria-label="加入購物車">
+                    <img src="https://www.figma.com/api/mcp/asset/eeb7f1b5-509a-4d80-83b8-7d1319fb4266" alt="" width="20" height="20" />
+                  </button>
+                </article>
+                <article class="inspire-card">
+                  <div class="inspire-card__img">
+                    <img src="https://www.figma.com/api/mcp/asset/d9dcbf59-795f-4dce-9409-7185864acb0e" alt="" />
+                    <div class="inspire-promo">
+                      <img src="https://www.figma.com/api/mcp/asset/2432f67a-431d-4dc9-91de-d38620c6bb98" alt="" class="inspire-promo-corner" />
+                      $99.9換UCC...
+                    </div>
+                  </div>
+                  <div class="inspire-card__body">
+                    <p class="inspire-name">Smarty - 即食麵</p>
+                    <p class="inspire-spec">24x700毫升</p>
+                    <p class="inspire-delivery">8小時送達</p>
+                    <p class="inspire-rp">$9,099.0</p>
+                    <p class="inspire-price-red">$63.80</p>
+                  </div>
+                  <button type="button" class="inspire-cart" aria-label="加入購物車">
+                    <img src="https://www.figma.com/api/mcp/asset/eeb7f1b5-509a-4d80-83b8-7d1319fb4266" alt="" width="20" height="20" />
+                  </button>
+                </article>
+                <article class="inspire-card">
+                  <div class="inspire-card__img">
+                    <img src="https://www.figma.com/api/mcp/asset/5c7578f2-afd4-4cc4-906e-89f2f5525342" alt="" />
+                    <div class="inspire-promo">
+                      <img src="https://www.figma.com/api/mcp/asset/2432f67a-431d-4dc9-91de-d38620c6bb98" alt="" class="inspire-promo-corner" />
+                      $99.9換UCC咖啡
+                    </div>
+                  </div>
+                  <div class="inspire-card__body">
+                    <p class="inspire-name">[原箱] 蒸餾水 4.5L x 4</p>
+                    <p class="inspire-spec">4.5升 x 4</p>
+                    <p class="inspire-delivery">8小時送達</p>
+                    <p class="inspire-rp">$9,099.0</p>
+                    <p class="inspire-price-red">$82.00</p>
+                  </div>
+                  <button type="button" class="inspire-cart" aria-label="加入購物車">
+                    <img src="https://www.figma.com/api/mcp/asset/eeb7f1b5-509a-4d80-83b8-7d1319fb4266" alt="" width="20" height="20" />
+                  </button>
+                </article>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </main>
+
+      <footer class="page-footer" data-name="Footer">
+        <div class="checkout-bar" data-name="Action Button">
+          <div class="total" data-name="Total">
+            <div class="total__row">
+              <p class="total__price" id="total-price">$362.00</p>
+              <img class="total__chev" src="https://www.figma.com/api/mcp/asset/c8482275-00ed-412f-bbce-54bcfad53d2e" alt="" />
+            </div>
+            <p class="save">節省$39.9</p>
+          </div>
+          <button type="button" class="btn-checkout" id="btn-checkout">結帳 (9件)</button>
+        </div>
+        <div class="home-indicator-wrap">
+          <div class="home-indicator" aria-hidden="true"></div>
+        </div>
+      </footer>
+
+      <div class="timeslot-modal" id="timeslot-modal" aria-hidden="true">
+        <button type="button" class="timeslot-modal__backdrop" id="timeslot-backdrop" aria-label="關閉"></button>
+        <section class="timeslot-sheet" role="dialog" aria-modal="true" aria-labelledby="timeslot-title">
+          <div class="timeslot-sheet__handle" aria-hidden="true"></div>
+          <div class="timeslot-sheet__head">
+            <h3 id="timeslot-title">HKTVmall 送貨時段</h3>
+            <button type="button" class="timeslot-sheet__close" id="timeslot-close" aria-label="關閉">×</button>
+          </div>
+          <div class="timeslot-segment" role="tablist" aria-label="送貨方式">
+            <button type="button" class="timeslot-segment__btn is-active" id="timeslot-seg-3hr" role="tab">快! 3小時送達</button>
+            <button type="button" class="timeslot-segment__btn" id="timeslot-seg-merge" role="tab">一併送</button>
+          </div>
+          <div class="timeslot-sheet__body">
+            <div class="timeslot-wheel">
+              <div class="timeslot-wheel__col">
+      
+                <div class="timeslot-wheel__viewport">
+                  <div class="timeslot-wheel__mask"></div>
+                  <div class="timeslot-wheel__list" id="timeslot-date-row"></div>
+                </div>
+              </div>
+              <div class="timeslot-wheel__col">
+                
+                <div class="timeslot-wheel__viewport">
+                  <div class="timeslot-wheel__mask"></div>
+                  <div class="timeslot-wheel__list" id="timeslot-time-row"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeslot-sheet__footer">
+            <button type="button" class="timeslot-btn timeslot-btn--primary" id="timeslot-confirm">確認</button>
+          </div>
+        </section>
+      </div>
+
+      <div class="timeslot-modal qty-modal" id="qty-modal" aria-hidden="true">
+        <button type="button" class="timeslot-modal__backdrop" id="qty-backdrop" aria-label="關閉"></button>
+        <section class="timeslot-sheet" role="dialog" aria-modal="true" aria-labelledby="qty-modal-title">
+          <div class="timeslot-sheet__handle" aria-hidden="true"></div>
+          <div class="timeslot-sheet__head">
+            <h3 id="qty-modal-title">更改數量</h3>
+            <button type="button" class="timeslot-sheet__close" id="qty-close" aria-label="關閉">×</button>
+          </div>
+          <div class="timeslot-sheet__body">
+            <div class="timeslot-wheel timeslot-wheel--single">
+              <div class="timeslot-wheel__col">
+                <div class="timeslot-wheel__viewport" id="qty-wheel-viewport">
+                  <div class="timeslot-wheel__mask"></div>
+                  <div class="timeslot-wheel__list" id="qty-wheel-row"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeslot-sheet__footer">
+            <button type="button" class="timeslot-btn timeslot-btn--primary" id="qty-confirm">確認</button>
+          </div>
+        </section>
+      </div>
+
+      <div class="checkout-confirm-modal" id="checkout-confirm-modal" aria-hidden="true">
+        <button type="button" class="checkout-confirm-backdrop" id="checkout-confirm-backdrop" aria-label="關閉"></button>
+        <div
+          class="checkout-confirm-sheet"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="checkout-confirm-title"
+        >
+          <div class="checkout-confirm-grabber-wrap">
+            <img
+              class="checkout-confirm-grabber"
+              src="https://www.figma.com/api/mcp/asset/ea46c064-dfa6-4374-bb47-c54de3cbe975"
+              alt=""
+            />
+          </div>
+          <div class="checkout-confirm-header">
+            <div class="checkout-confirm-header__spacer" aria-hidden="true"></div>
+            <h2 id="checkout-confirm-title" class="checkout-confirm-title">結帳</h2>
+            <button type="button" class="checkout-confirm-close" id="checkout-confirm-close" aria-label="關閉">
+              <img
+                src="https://www.figma.com/api/mcp/asset/e21a2740-5c53-4f48-ae0e-10a057318611"
+                alt=""
+                width=14"
+                height="14"
+              />
+            </button>
+          </div>
+
+          <div class="checkout-confirm-scroll">
+            <div class="checkout-confirm-card checkout-confirm-card--white">
+              <div class="checkout-confirm-row">
+                <span class="checkout-confirm-row__label">送貨時間</span>
+                <div class="checkout-confirm-row__value-wrap">
+                  <div id="checkout-delivery-time" class="checkout-confirm-row__value"></div>
+                  <img
+                    class="checkout-confirm-chevron"
+                    src="https://www.figma.com/api/mcp/asset/1769f912-2a41-4670-a87b-4cddea24c53e"
+                    alt=""
+                    width="24"
+                    height="24"
+                  />
+                </div>
+              </div>
+              <div class="checkout-confirm-row checkout-confirm-row--address">
+                <span class="checkout-confirm-row__label">送貨地址</span>
+                <div class="checkout-confirm-row__value-wrap">
+                  <div class="checkout-confirm-address-block">
+                    <p id="checkout-address-line1" class="checkout-confirm-address-line1">
+                      新界 大圍 栢傲庄 1期 1A 28樓 B室
+                    </p>
+                    <p id="checkout-address-contact" class="checkout-confirm-address-contact">
+                      Ricky Wong<span class="checkout-confirm-address-gap"> </span>98299999
+                    </p>
+                  </div>
+                  <img
+                    class="checkout-confirm-chevron"
+                    src="https://www.figma.com/api/mcp/asset/1769f912-2a41-4670-a87b-4cddea24c53e"
+                    alt=""
+                    width="24"
+                    height="24"
+                  />
+                </div>
+              </div>
+              <div class="checkout-confirm-row checkout-confirm-row--last">
+                <span class="checkout-confirm-row__label">付款方式</span>
+                <div class="checkout-confirm-row__value-wrap checkout-confirm-row__value-wrap--pay">
+                  <span class="checkout-confirm-pay-method">VISA</span>
+                  <span class="checkout-confirm-pay-last4">**** 3309</span>
+                  <img
+                    class="checkout-confirm-chevron"
+                    src="https://www.figma.com/api/mcp/asset/1769f912-2a41-4670-a87b-4cddea24c53e"
+                    alt=""
+                    width="24"
+                    height="24"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout-confirm-card checkout-confirm-card--white checkout-confirm-card--promo">
+              <div class="checkout-confirm-row checkout-confirm-row--coupon">
+                <span class="checkout-confirm-row__label">優惠券/優惠碼</span>
+                <div class="checkout-confirm-code-field">
+                  <input type="text" class="checkout-confirm-input" readonly aria-label="優惠碼" />
+                  <button type="button" class="checkout-confirm-apply" tabindex="-1">套用</button>
+                </div>
+              </div>
+              <div class="checkout-confirm-row checkout-confirm-row--mall">
+                <div class="checkout-confirm-mall-label">
+                  <span class="checkout-confirm-row__label">Mall Dollar</span>
+                  <p class="checkout-confirm-mall-hint">可用 $20.8</p>
+                </div>
+                <div class="checkout-confirm-code-field checkout-confirm-code-field--dollar">
+                  <span class="checkout-confirm-dollar-prefix">$</span>
+                  <input type="text" class="checkout-confirm-input checkout-confirm-input--dollar" readonly aria-label="Mall Dollar 金額" />
+                  <button type="button" class="checkout-confirm-apply" tabindex="-1">套用</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout-confirm-card checkout-confirm-card--payment">
+              <h3 class="checkout-payment-title">付款詳細</h3>
+              <div class="checkout-payment-rows">
+                <div class="checkout-amount-line">
+                  <span class="checkout-amount-line__label">商品總額</span>
+                  <span id="checkout-subtotal" class="checkout-amount-line__value">$0.0</span>
+                </div>
+                <div class="checkout-amount-line">
+                  <span class="checkout-amount-line__label">運費</span>
+                  <span id="checkout-shipping" class="checkout-amount-line__value">$0.0</span>
+                </div>
+                <div class="checkout-amount-line">
+                  <span class="checkout-amount-line__label checkout-amount-line__label--info">
+                    平台費
+                    
+                    </span>
+                  </span>
+                  <span id="checkout-platform" class="checkout-amount-line__value">$3.0</span>
+                </div>
+                <div class="checkout-amount-line">
+                  <span class="checkout-amount-line__label">膠袋徵費</span>
+                  <span id="checkout-bag" class="checkout-amount-line__value">$2.0</span>
+                </div>
+                <div class="checkout-amount-line checkout-amount-line--grand">
+                  <span class="checkout-amount-line__label">付款總額</span>
+                  <span id="checkout-grand-total" class="checkout-amount-line__value checkout-amount-line__value--grand">$0.0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-confirm-footer">
+            <button type="button" class="checkout-confirm-pay" id="checkout-confirm-proceed">
+              付款 <span id="checkout-pay-amount">$0.0</span>
+            </button>
+            <div class="home-indicator-wrap checkout-confirm-home">
+              <div class="home-indicator" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="checkout-success-page"
+      id="checkout-success-page"
+      aria-hidden="true"
+      role="alertdialog"
+      aria-labelledby="checkout-success-title"
+      aria-describedby="checkout-success-desc"
+    >
+      <div class="checkout-success-page__inner">
+        <div class="checkout-success-icon" aria-hidden="true">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="var(--brand-primary)" />
+            <path
+              d="M22 40.5L34.5 53L58 29"
+              stroke="white"
+              stroke-width="5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <h1 id="checkout-success-title" class="checkout-success-title">付款成功</h1>
+        <p id="checkout-success-desc" class="checkout-success-desc">
+          您的訂單已確認，我們將盡快為您安排送貨。
+        </p>
+        <p class="checkout-success-amount">
+          付款金額 <span id="checkout-success-total" class="checkout-success-total">$0.0</span>
+        </p>
+        <button type="button" class="checkout-success-btn" id="checkout-success-done">返回購物車</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
