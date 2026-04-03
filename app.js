@@ -1,5 +1,10 @@
 (function () {
   var refreshCheckoutModalIfOpen = function () {};
+  /** 結帳視窗開啟時編輯時段：確認後比對 SKU 選擇是否改變 */
+  var captureCheckoutSkuSnapshotIfNeeded = function () {};
+  var afterTimeslotApplyHook = function () {};
+  var checkoutSkuSnapshotBeforeTimeslot = null;
+  var checkoutSkuTimeslotMismatch = false;
 
   var group = document.getElementById("hktvmall-group");
   var toggleChev = document.getElementById("toggle-hktvmall");
@@ -57,14 +62,8 @@
   var forceMergeOnTimeslotConfirm = false;
   var wheelOptions = {
     merge: {
-      dates: ["今天", "明天", "後天", "01/04 (星期三)", "02/04 (星期四)", "03/04 (星期五)"],
-      times: [
-        "10:00 - 12:30 (已滿)",
-        "12:30 - 15:00 (已滿)",
-        "15:00 - 18:00",
-        "18:00 - 21:00",
-        "21:00 - 23:00"
-      ]
+      dates: ["明天", "後天", "01/04 (星期三)", "02/04 (星期四)", "03/04 (星期五)"],
+      times: ["10:00 - 12:30", "12:30 - 15:00", "15:00 - 18:00", "18:00 - 21:00", "21:00 - 23:00"]
     },
     "3hr": {
       dates: ["今日"],
@@ -88,32 +87,45 @@
     if (timeslotSegMerge) timeslotSegMerge.classList.toggle("is-active", mode === modalModeMerge);
   }
 
-  function isOptionDisabled(columnKey, label) {
-    return columnKey === "time" && label.indexOf("已滿") !== -1;
+  /** 一併送：僅當 date＝明天時，首兩個時段為已滿 */
+  function isMergeTimeFull(dateLabel, timeBaseLabel) {
+    return (
+      dateLabel === "明天" &&
+      (timeBaseLabel === "10:00 - 12:30" || timeBaseLabel === "12:30 - 15:00")
+    );
   }
 
-  function hasSelectedTomorrowDeliverySku() {
-    var cards = document.querySelectorAll("#hktvmall-group .product-card.is-selected");
-    for (var i = 0; i < cards.length; i++) {
-      var label = cards[i].querySelector(".delivery-label");
-      if (label && label.textContent.indexOf("明天送達") !== -1) return true;
+  function mergeTimeRowLabel(dateLabel, timeBaseLabel) {
+    return isMergeTimeFull(dateLabel, timeBaseLabel) ? timeBaseLabel + " (已滿)" : timeBaseLabel;
+  }
+
+  /** 一併送：日期變更後，時段改為當日第一個可選，並由 renderWheel 將右欄捲至該項 */
+  function scrollMergeTimeToFirstEnabled() {
+    var timesM = wheelOptions.merge.times;
+    var dM = draftByMode.merge.date;
+    var i;
+    for (i = 0; i < timesM.length; i += 1) {
+      if (!isMergeTimeFull(dM, timesM[i])) {
+        draftByMode.merge.time = timesM[i];
+        return;
+      }
+    }
+    draftByMode.merge.time = timesM[0];
+  }
+
+  function isDraftTimeslotDisabled() {
+    if (modalMode === modalModeMerge) {
+      return isMergeTimeFull(draftByMode.merge.date, draftByMode.merge.time);
     }
     return false;
   }
 
-  function getEffectiveMergeDates() {
-    var base = wheelOptions.merge.dates;
-    if (hasSelectedTomorrowDeliverySku()) {
-      return base.filter(function (d) {
-        return d !== "今天";
-      });
-    }
-    return base.slice();
-  }
-
   function ensureMergeDraftDateValid() {
     if (modalMode !== modalModeMerge) return;
-    var dates = getEffectiveMergeDates();
+    var dates = wheelOptions.merge.dates;
+    if (draftByMode.merge.date === "今天") {
+      draftByMode.merge.date = "明天";
+    }
     if (dates.indexOf(draftByMode.merge.date) === -1) {
       draftByMode.merge.date = dates[0] || "明天";
     }
@@ -128,27 +140,32 @@
       if (t3.indexOf(draftByMode["3hr"].time) === -1) draftByMode["3hr"].time = t3[0];
       return;
     }
-    var times = wheelOptions[modeKey].times;
-    var t = draftByMode[modeKey].time;
-    if (times.indexOf(t) !== -1) return;
-    if (t === "12:30 - 15:00" && times.indexOf("12:30 - 15:00 (已滿)") !== -1) {
-      draftByMode[modeKey].time = "12:30 - 15:00 (已滿)";
-      return;
-    }
-    var j;
-    for (j = 0; j < times.length; j++) {
-      if (!isOptionDisabled("time", times[j])) {
-        draftByMode[modeKey].time = times[j];
+    if (modeKey === "merge") {
+      var timesM = wheelOptions.merge.times;
+      var dM = draftByMode.merge.date;
+      var tM = draftByMode.merge.time;
+      if (tM && tM.indexOf(" (已滿)") !== -1) {
+        tM = tM.replace(" (已滿)", "");
+        draftByMode.merge.time = tM;
+      }
+      if (timesM.indexOf(tM) !== -1 && !isMergeTimeFull(dM, tM)) {
         return;
       }
+      var jm;
+      for (jm = 0; jm < timesM.length; jm += 1) {
+        if (!isMergeTimeFull(dM, timesM[jm])) {
+          draftByMode.merge.time = timesM[jm];
+          return;
+        }
+      }
+      draftByMode.merge.time = timesM[0];
+      return;
     }
-    draftByMode[modeKey].time = times[0];
   }
 
   function syncTimeslotConfirmButton() {
     if (!timeslotConfirm) return;
-    var t = draftByMode[modalMode].time;
-    var dis = isOptionDisabled("time", t);
+    var dis = isDraftTimeslotDisabled();
     timeslotConfirm.disabled = dis;
     timeslotConfirm.classList.toggle("is-disabled", dis);
     timeslotConfirm.setAttribute("aria-disabled", dis ? "true" : "false");
@@ -170,7 +187,7 @@
   }
 
   function getWheelDateOptions() {
-    if (modalMode === modalModeMerge) return getEffectiveMergeDates();
+    if (modalMode === modalModeMerge) return wheelOptions.merge.dates;
     return wheelOptions[modalMode].dates;
   }
 
@@ -184,8 +201,16 @@
 
     var rawIndex = Math.round(viewportEl.scrollTop / wheelItemHeight);
     var targetIndex = clampIndex(rawIndex, options.length - 1);
-    draftByMode[modalMode][columnKey] = options[targetIndex];
+    var newVal = options[targetIndex];
+    var prevMergeDate = modalMode === modalModeMerge && columnKey === "date" ? draftByMode.merge.date : null;
+    draftByMode[modalMode][columnKey] = newVal;
     syncWheelActiveClass(columnKey);
+
+    if (columnKey === "date" && modalMode === modalModeMerge && prevMergeDate !== newVal) {
+      scrollMergeTimeToFirstEnabled();
+      renderWheel();
+      return;
+    }
 
     var targetTop = targetIndex * wheelItemHeight;
     if (Math.abs(viewportEl.scrollTop - targetTop) > 0.5) {
@@ -235,8 +260,13 @@
           timeslotDateViewport.scrollTop = idx * wheelItemHeight;
         }
         draftByMode[modalMode].date = label;
-        syncWheelActiveClass("date");
-        syncTimeslotConfirmButton();
+        if (modalMode === modalModeMerge) {
+          scrollMergeTimeToFirstEnabled();
+          renderWheel();
+        } else {
+          syncWheelActiveClass("date");
+          syncTimeslotConfirmButton();
+        }
       });
       timeslotDateRow.appendChild(btn);
     });
@@ -244,12 +274,15 @@
     timeOptions.forEach(function (label) {
       var btn = document.createElement("button");
       btn.type = "button";
-      var dis = isOptionDisabled("time", label);
+      var dis =
+        modalMode === modalModeMerge ? isMergeTimeFull(draft.date, label) : false;
+      var rowText =
+        modalMode === modalModeMerge ? mergeTimeRowLabel(draft.date, label) : label;
       btn.className =
         "timeslot-wheel__item" +
         (draft.time === label ? " is-active" : "") +
         (dis ? " timeslot-wheel__item--disabled" : "");
-      btn.textContent = label;
+      btn.textContent = rowText;
       btn.dataset.value = label;
       btn.addEventListener("click", function () {
         var idx = timeOptions.indexOf(label);
@@ -286,6 +319,7 @@
 
   function openTimeslotModal() {
     if (!timeslotModal) return;
+    captureCheckoutSkuSnapshotIfNeeded();
     draftByMode.merge = { date: selectedByMode.merge.date, time: selectedByMode.merge.time };
     draftByMode["3hr"] = { date: selectedByMode["3hr"].date, time: selectedByMode["3hr"].time };
     normalizeDraftTimeIfMissing("merge");
@@ -305,6 +339,7 @@
     timeslotModal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
     forceMergeOnTimeslotConfirm = false;
+    checkoutSkuSnapshotBeforeTimeslot = null;
     var checkoutModalEl = document.getElementById("checkout-confirm-modal");
     if (checkoutModalEl && checkoutModalEl.classList.contains("is-open")) {
       document.body.style.overflow = "hidden";
@@ -312,7 +347,7 @@
   }
 
   function applyTimeslotSelection() {
-    if (isOptionDisabled("time", draftByMode[modalMode].time)) return;
+    if (isDraftTimeslotDisabled()) return;
     selectedByMode.merge = { date: draftByMode.merge.date, time: draftByMode.merge.time };
     selectedByMode["3hr"] = { date: draftByMode["3hr"].date, time: draftByMode["3hr"].time };
     if (mergeTimeslotText) {
@@ -328,7 +363,7 @@
       applyDeliveryMode(modalMode === modalMode3hr ? MODE_3HR_ONLY : MODE_MERGE);
     }
     syncAllParentsAndFooter();
-    refreshCheckoutModalIfOpen();
+    afterTimeslotApplyHook();
   }
 
   if (changeBtn) {
@@ -506,7 +541,6 @@
         if (!isHktSku(item)) return;
         if (isHkt3hrSku(item)) {
           setSkuDisabled(item, false);
-          setSkuChecked(item, true);
         } else {
           setSkuDisabled(item, true);
         }
@@ -830,6 +864,25 @@
     });
   }
 
+  function getSelectedSkuFingerprint() {
+    var parts = [];
+    skuItems.forEach(function (item, i) {
+      if (!item.disabled && isChecked(item.checkbox)) {
+        parts.push(String(i));
+      }
+    });
+    return parts.join(",");
+  }
+
+  captureCheckoutSkuSnapshotIfNeeded = function () {
+    var cm = document.getElementById("checkout-confirm-modal");
+    if (cm && cm.classList.contains("is-open")) {
+      checkoutSkuSnapshotBeforeTimeslot = getSelectedSkuFingerprint();
+    } else {
+      checkoutSkuSnapshotBeforeTimeslot = null;
+    }
+  };
+
   var checkoutConfirmModal = document.getElementById("checkout-confirm-modal");
   var checkoutConfirmBackdrop = document.getElementById("checkout-confirm-backdrop");
   var checkoutConfirmClose = document.getElementById("checkout-confirm-close");
@@ -903,12 +956,35 @@
     if (bagEl) bagEl.textContent = formatCheckoutMoney(bag);
     if (grandEl) grandEl.textContent = formatCheckoutMoney(grand);
     if (payEl) payEl.textContent = formatCheckoutMoney(grand);
+
+    var skuAlert = document.getElementById("checkout-timeslot-sku-alert");
+    if (skuAlert) {
+      skuAlert.classList.toggle("is-visible", checkoutSkuTimeslotMismatch);
+      skuAlert.hidden = !checkoutSkuTimeslotMismatch;
+    }
   }
 
   refreshCheckoutModalIfOpen = function () {
     if (checkoutConfirmModal && checkoutConfirmModal.classList.contains("is-open")) {
       populateCheckoutModal();
     }
+  };
+
+  afterTimeslotApplyHook = function () {
+    var cm = document.getElementById("checkout-confirm-modal");
+    if (
+      cm &&
+      cm.classList.contains("is-open") &&
+      checkoutSkuSnapshotBeforeTimeslot !== null
+    ) {
+      if (getSelectedSkuFingerprint() !== checkoutSkuSnapshotBeforeTimeslot) {
+        checkoutSkuTimeslotMismatch = true;
+      } else {
+        checkoutSkuTimeslotMismatch = false;
+      }
+      checkoutSkuSnapshotBeforeTimeslot = null;
+    }
+    refreshCheckoutModalIfOpen();
   };
 
   function openCheckoutConfirmModal() {
@@ -959,6 +1035,8 @@
         return !item.disabled && isChecked(item.checkbox);
       });
       if (selected.length === 0) return;
+      checkoutSkuTimeslotMismatch = false;
+      checkoutSkuSnapshotBeforeTimeslot = null;
       openCheckoutConfirmModal();
     });
   }

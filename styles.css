@@ -988,30 +988,47 @@ body {
 }
 
 .timeslot-sheet__head {
+  position: relative;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 0 16px;
+  justify-content: space-between;
+  padding: 8px 16px 12px;
+  min-height: 44px;
 }
 
-.timeslot-sheet__head h3 {
+.timeslot-sheet__head-spacer {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.timeslot-sheet__title {
+  position: absolute;
+  left: 56px;
+  right: 56px;
+  top: 50%;
+  transform: translateY(-50%);
   margin: 0;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
+  text-align: center;
+  color: #000001;
+  line-height: 1.4;
 }
 
 .timeslot-sheet__close {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin: -8px -8px -8px 0;
   border: none;
   background: transparent;
-  font-size: 20px;
-  line-height: 1;
-  color: #1f252d;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
 }
 
 .timeslot-segment {
@@ -1280,6 +1297,22 @@ body {
   flex-direction: column;
   gap: 12px;
   padding: 0 0 8px;
+}
+
+.checkout-confirm-sku-alert {
+  display: none;
+  margin: 0 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #f5c2c7;
+  background: #fde8ec;
+  color: #c62828;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.checkout-confirm-sku-alert.is-visible {
+  display: block;
 }
 
 .checkout-confirm-card {

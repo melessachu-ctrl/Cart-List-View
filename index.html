@@ -799,6 +799,14 @@
           </div>
 
           <div class="checkout-confirm-scroll">
+            <p
+              class="checkout-confirm-sku-alert"
+              id="checkout-timeslot-sku-alert"
+              role="alert"
+              hidden
+            >
+              部分已選商品未能在以此送貨時段送達，請返回購物車確認。
+            </p>
             <div class="checkout-confirm-card checkout-confirm-card--white">
               <div class="checkout-confirm-row">
                 <span class="checkout-confirm-row__label">送貨時間</span>
@@ -925,11 +933,19 @@
         <section class="timeslot-sheet" role="dialog" aria-modal="true" aria-labelledby="timeslot-title">
           <div class="timeslot-sheet__handle" aria-hidden="true"></div>
           <div class="timeslot-sheet__head">
-            <h3 id="timeslot-title">HKTVmall 送貨時段</h3>
-            <button type="button" class="timeslot-sheet__close" id="timeslot-close" aria-label="關閉">×</button>
+            <div class="timeslot-sheet__head-spacer" aria-hidden="true"></div>
+            <h3 id="timeslot-title" class="timeslot-sheet__title">HKTVmall 送貨時段</h3>
+            <button type="button" class="timeslot-sheet__close" id="timeslot-close" aria-label="關閉">
+              <img
+                src="https://www.figma.com/api/mcp/asset/e21a2740-5c53-4f48-ae0e-10a057318611"
+                alt=""
+                width="14"
+                height="14"
+              />
+            </button>
           </div>
           <div class="timeslot-segment" role="tablist" aria-label="送貨方式">
-            <button type="button" class="timeslot-segment__btn is-active" id="timeslot-seg-3hr" role="tab">快! 3小時送達</button>
+            <button type="button" class="timeslot-segment__btn is-active" id="timeslot-seg-3hr" role="tab">3小時送達</button>
             <button type="button" class="timeslot-segment__btn" id="timeslot-seg-merge" role="tab">一併送</button>
           </div>
           <div class="timeslot-sheet__body">
