@@ -41,52 +41,160 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=2" />
+    <link rel="stylesheet" href="styles.css?v=7" />
   </head>
   <body>
+<!--
+      Icons traced to match Figma structure from:
+      HKTVmall Shopping Cart Revamp — https://www.figma.com/design/0UW9GPHg38McZcUGQghmNb?node-id=15619-11971
+      (Checkbox, DeliveryTitle icon-chevronup-small-outlined, ThresholdIcon icBag/icDelivery, icChevronRight, etc.)
+      HKTVmall Design System — https://www.figma.com/design/F0tjdruLjJTfWgmTeZKBnw?node-id=3004-350
+      Stroke icons follow DS *-regular-outlined pattern (rounded caps / joins).
+    -->
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+      <!-- Checkbox — DS: selected = solid brand green + white filled check; header row = outline + white check -->
+      <symbol id="icon-cb-solid-on" viewBox="0 0 24 24">
+        <!-- Fill full viewBox so checked graphic matches ::before box (same inset 12.5% / 75%). rx≈8 → ~6px on 18px render. -->
+        <rect x="0" y="0" width="24" height="24" rx="8" fill="#00a759" />
+        <g transform="translate(12 12) scale(0.68) translate(-12 -12)">
+          <path fill="#fff" d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+        </g>
+      </symbol>
+      <symbol id="icon-cb-header-on" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="8" fill="none" stroke="#fff" stroke-width="1.5" />
+        <g transform="translate(12 12) scale(0.68) translate(-12 -12)">
+          <path fill="#fff" d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+        </g>
+      </symbol>
+      <!-- DeliveryTitle: icon-chevronup-small-outlined (expanded section) -->
+      <symbol id="icon-chev-up-white" viewBox="0 0 24 24">
+        <path fill="none" stroke="#fff" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" d="M7.2 14.4 12 9.6l4.8 4.8" />
+      </symbol>
+      <symbol id="icon-chev-right" viewBox="0 0 24 24">
+        <path fill="none" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6" />
+      </symbol>
+      <symbol id="icon-chev-up" viewBox="0 0 24 24">
+        <path fill="none" stroke="#8b8b8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m18 15-6-6-6 6" />
+      </symbol>
+      <!-- ThresholdIcon icBag (O2O / 到店自取) — outlined bag -->
+      <symbol id="icon-store" viewBox="0 0 24 24">
+        <g fill="none" stroke="#00a759" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+          <path d="M5.5 12h13v8a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-8z" />
+          <path d="M6.5 9h11l1 3H5.5l1-3z" />
+        </g>
+      </symbol>
+      <!-- ThresholdIcon icDelivery — outlined truck -->
+      <symbol id="icon-truck" viewBox="0 0 24 24">
+        <g fill="none" stroke="#00a759" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 18V6a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h1" />
+          <path d="M15 18h2" />
+          <path d="M19 18h2a2 2 0 0 0 2-2v-6.65a2 2 0 0 0-.55-1.38l-2.73-3.05A2 2 0 0 0 16.13 4H14" />
+          <circle cx="7.5" cy="18.5" r="2.5" />
+          <circle cx="17.5" cy="18.5" r="2.5" />
+        </g>
+      </symbol>
+      <symbol id="icon-info" viewBox="0 0 24 24">
+        <g fill="none" stroke="#8b8b8b" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 16v-4M12 8h.01" />
+        </g>
+      </symbol>
+      <symbol id="icon-chev-small" viewBox="0 0 24 24">
+        <path fill="none" stroke="#00a759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m10 8 4 4-4 4" />
+      </symbol>
+      <symbol id="icon-alert" viewBox="0 0 24 24">
+        <g fill="none" stroke="#0172ce" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+          <path d="M12 9v4M12 17h.01" />
+        </g>
+      </symbol>
+      <symbol id="icon-heart" viewBox="0 0 24 24">
+        <path fill="none" stroke="#8b8b8b" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.5 4.04 3 5.5l7 7Z" />
+      </symbol>
+      <!-- icon-delete-regular-outlined -->
+      <symbol id="icon-trash" viewBox="0 0 24 24">
+        <g fill="none" stroke="#575757" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 6h18" />
+          <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+          <path d="M10 11v6M14 11v6" />
+        </g>
+      </symbol>
+      <!-- icon-cart-regular-outlined / icCart — white stroke on green btn -->
+      <symbol id="icon-cart-white" viewBox="0 0 24 24">
+        <g fill="none" stroke="#fff" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="20.5" r="1.5" />
+          <circle cx="17" cy="20.5" r="1.5" />
+          <path d="M3 4h2.5l1.12 7.49a2 2 0 0 0 2 1.71h9.76a2 2 0 0 0 2-1.65L21 7H6.1" />
+        </g>
+      </symbol>
+      <symbol id="icon-promo-tag" viewBox="0 0 24 24">
+        <path fill="#ff6c40" d="M3 3h8.2L21 12.8 12.2 21.6 3 12.4V3zm5.2 5.2h3.6v3.6H8.2V8.2z" opacity="0.95" />
+      </symbol>
+      <!-- Promo Label Subtract corner (simplified bevel) -->
+      <symbol id="icon-promo-corner" viewBox="0 0 24 24">
+        <path fill="#cf062a" d="M0 24V10.5Q0 0 10.5 0H24v24H0z" />
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24">
+        <path fill="none" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 6 6 18M6 6l12 12" />
+      </symbol>
+      <symbol id="icon-grabber" viewBox="0 0 48 6">
+        <rect x="10" y="2" width="28" height="2.5" rx="1.25" fill="#d7dbe0" />
+      </symbol>
+      <!-- Status bar — matches iOS / Figma Status Bar assets -->
+      <symbol id="icon-status-signal" viewBox="0 0 19 12">
+        <path fill="#000" d="M1 10V7.5h2.5V10H1zm5 0V5h2.5v5H6zm5 0V3h2.5v7H11zm5 0V1h2.5v9H16z" />
+      </symbol>
+      <symbol id="icon-status-wifi" viewBox="0 0 17 12">
+        <g fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 4.5c2.8-2.2 6.2-2.2 9 0" />
+          <path d="M3.2 6.7c1.9-1.5 4.3-1.5 6.2 0" />
+          <path d="M5.4 8.9c1-0.8 2.2-0.8 3.2 0" />
+          <circle cx="8.5" cy="11" r="1.1" fill="#000" stroke="none" />
+        </g>
+      </symbol>
+      <symbol id="icon-status-battery" viewBox="0 0 27 13">
+        <rect x="1" y="2.5" width="21" height="8" rx="2" fill="none" stroke="#000" stroke-width="1.15" />
+        <path fill="#000" d="M24 5v3h2v-3h-2z" />
+        <rect x="3" y="4" width="15" height="5" rx="1" fill="#000" />
+      </symbol>
+      <!-- Nav: icon-location (4955) filled pin; Dropdown Icon chevron down (5792) -->
+      <symbol id="icon-nav-pin-filled" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+        />
+      </symbol>
+      <symbol id="icon-nav-chev-down" viewBox="0 0 24 24">
+        <path fill="none" stroke="#8b8b8b" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" d="M7.2 9.6 12 14.4l4.8-4.8" />
+      </symbol>
+    </svg>
+
     <div class="app-shell" data-node-id="15619:11971">
       <header class="page-header" data-name="Header">
         <div class="status-bar" data-name="Status Bar - iPhone">
           <div class="status-bar__time">9:15</div>
           <div class="status-bar__spacer" style="width: 124px; height: 10px"></div>
           <div class="status-bar__icons">
-            <img src="https://www.figma.com/api/mcp/asset/1292f4a8-2202-4ba0-947b-871e9744759d" alt="" width="19" height="12" />
-            <img src="https://www.figma.com/api/mcp/asset/25b7c8aa-ec9e-404c-bcf0-9a8eb288dd28" alt="" width="17" height="12" />
-            <img src="https://www.figma.com/api/mcp/asset/d98bc7fb-be70-4cbe-bb7c-2b63aded3261" alt="" width="27" height="13" />
+            <svg width="19" height="12" aria-hidden="true" focusable="false"><use href="#icon-status-signal" width="19" height="12" /></svg>
+            <svg width="17" height="12" aria-hidden="true" focusable="false"><use href="#icon-status-wifi" width="17" height="12" /></svg>
+            <svg width="27" height="13" aria-hidden="true" focusable="false"><use href="#icon-status-battery" width="27" height="13" /></svg>
           </div>
         </div>
         <nav class="nav-bar" data-name="NavBar">
           <div class="nav-bar__delivery" data-name="Delivery Info">
-            <!-- DS: icon-location-regular-filled (4955:36) — Heroicons MapPin solid, 24px artboard -->
-            <svg
-              class="nav-icon nav-icon--pin"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                fill="currentColor"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
-              />
+            <!-- DS: icon-location-regular-filled (4955:36) -->
+            <svg class="nav-icon nav-icon--pin" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <use href="#icon-nav-pin-filled" width="24" height="24" />
             </svg>
             <span class="label">送至</span>
             <span class="addr">新界 大圍 栢傲庄 1期 1A 28樓 B室</span>
-            <!-- DS: icon-chevrondown-small-outlined (3096:139) — Heroicons ChevronDown outline -->
-            <svg
-              class="nav-icon nav-icon--chev"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path d="M13.2338 7.74167L10.0005 10.975L6.76714 7.74167C6.44214 7.41667 5.91714 7.41667 5.59214 7.74167C5.26714 8.06667 5.26714 8.59167 5.59214 8.91667L9.41714 12.7417C9.74214 13.0667 10.2671 13.0667 10.5921 12.7417L14.4171 8.91667C14.7421 8.59167 14.7421 8.06667 14.4171 7.74167C14.0921 7.425 13.5588 7.41667 13.2338 7.74167Z" fill="#8B8B8B"/>
+            <!-- DS: icon-chevrondown-small-outlined (3096:139) -->
+            <svg class="nav-icon nav-icon--chev" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <use href="#icon-nav-chev-down" width="24" height="24" />
             </svg>
           </div>
           <div class="nav-bar__actions" data-name="Right Elements">
@@ -101,7 +209,7 @@
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
-              <path d="M10.0134 16.52C8.61336 16.7467 7.18669 17.3867 6.13336 18.32C4.98669 19.32 4.41336 21.16 2.46669 20.48C0.520022 19.8 0.960022 17.6667 1.29336 16.1467C2.20002 11.9467 5.77336 8.54667 10.0134 7.85333C10.0534 7.06667 9.96002 6.22667 10.0134 5.44C10.1334 3.77333 11.72 2.78667 13.2534 3.46667C16.28 5.68 19.2 8.06667 22.1867 10.3467C23.08 11.2533 23.0667 12.7467 22.1334 13.6267L13.6667 20.2133C12.4 21.3333 10.0267 20.2933 10.0267 18.6267V16.4933L10.0134 16.52ZM11.96 14.3733C12.0134 14.44 12.0134 14.5333 12.0134 14.6133C12.12 15.8533 11.9334 17.24 12.0134 18.4933C12.0267 18.6133 12.1867 18.72 12.3067 18.6933L20.84 11.9733C20.84 11.8667 20.7334 11.76 20.6667 11.6933C20.16 11.2 19.28 10.6133 18.6934 10.16C16.7467 8.64 14.7734 7.04 12.8 5.57333C12.6134 5.42667 12.2534 5.05333 12.0534 5.33333L11.9734 9.53333C11.8934 9.66667 11.2667 9.64 11.1067 9.65333C6.81335 10.2 3.22669 13.4933 3.04002 17.96C3.04002 18.1067 2.98669 18.56 3.16002 18.5867C3.54669 18.2533 3.82669 17.76 4.18669 17.3733C5.90669 15.5333 8.70669 14.4 11.2 14.2933C11.3467 14.2933 11.8667 14.2667 11.96 14.3467V14.3733Z" fill="#1C1C25" "=""></path>
+              <path d="M10.0134 16.52C8.61336 16.7467 7.18669 17.3867 6.13336 18.32C4.98669 19.32 4.41336 21.16 2.46669 20.48C0.520022 19.8 0.960022 17.6667 1.29336 16.1467C2.20002 11.9467 5.77336 8.54667 10.0134 7.85333C10.0534 7.06667 9.96002 6.22667 10.0134 5.44C10.1334 3.77333 11.72 2.78667 13.2534 3.46667C16.28 5.68 19.2 8.06667 22.1867 10.3467C23.08 11.2533 23.0667 12.7467 22.1334 13.6267L13.6667 20.2133C12.4 21.3333 10.0267 20.2933 10.0267 18.6267V16.4933L10.0134 16.52ZM11.96 14.3733C12.0134 14.44 12.0134 14.5333 12.0134 14.6133C12.12 15.8533 11.9334 17.24 12.0134 18.4933C12.0267 18.6133 12.1867 18.72 12.3067 18.6933L20.84 11.9733C20.84 11.8667 20.7334 11.76 20.6667 11.6933C20.16 11.2 19.28 10.6133 18.6934 10.16C16.7467 8.64 14.7734 7.04 12.8 5.57333C12.6134 5.42667 12.2534 5.05333 12.0534 5.33333L11.9734 9.53333C11.8934 9.66667 11.2667 9.64 11.1067 9.65333C6.81335 10.2 3.22669 13.4933 3.04002 17.96C3.04002 18.1067 2.98669 18.56 3.16002 18.5867C3.54669 18.2533 3.82669 17.76 4.18669 17.3733C5.90669 15.5333 8.70669 14.4 11.2 14.2933C11.3467 14.2933 11.8667 14.2667 11.96 14.3467V14.3733Z" fill="#1C1C25"></path>
               </svg>
             </button>
             <!-- DS: icon-edit-regular-outlined (3023:433) — Heroicons Pencil outline -->
@@ -129,11 +237,7 @@
 
             <div class="option-3hr" data-node-id="15619:11963">
               <div class="radio-img" style="position: relative; width: 24px; height: 24px">
-                <img
-                  src="https://www.figma.com/api/mcp/asset/fff61bf6-fd28-4eee-b59d-6652d6838905"
-                  alt=""
-                  style="position: absolute; inset: 8.33%; width: calc(100% - 16.66%); height: calc(100% - 16.66%)"
-                />
+                
               </div>
               <div class="option-3hr__body">
                 <div class="option-3hr__row1">
@@ -154,16 +258,8 @@
 
             <div class="option-merge" data-name="Delivery Time">
               <div class="radio-img" style="position: relative; width: 24px; height: 24px">
-                <img
-                  src="https://www.figma.com/api/mcp/asset/5d8b5b28-ba44-41c8-9964-6d5d2bcaf3ba"
-                  alt=""
-                  style="position: absolute; inset: 8.33%; width: calc(100% - 16.66%); height: calc(100% - 16.66%)"
-                />
-                <img
-                  src="https://www.figma.com/api/mcp/asset/88274e6e-4039-46bc-91b8-ee240bbf501e"
-                  alt=""
-                  style="position: absolute; inset: 8.33%; width: calc(100% - 16.66%); height: calc(100% - 16.66%)"
-                />
+                
+                
               </div>
               <div class="option-merge__text">
                 <strong>一併送</strong>
@@ -177,8 +273,7 @@
         <div class="select-all-bar" data-name="Select all">
           <div class="left">
             <div class="cb-img" aria-hidden="true">
-              <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/dcb92bd8-317e-485c-b0eb-e9e972f692b2" alt="" />
-              <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/6efa2acb-5b2f-4966-8028-f724e1930066" alt="" />
+              <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
             </div>
             <span>全選</span>
           </div>
@@ -197,40 +292,36 @@
           <div class="hktvmall-group" id="hktvmall-group" data-name="HKTVmall">
             <div class="hktvmall-group__head" data-name="Delivery Title">
               <div class="cb-white" aria-hidden="true">
-                <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/a64714aa-7447-4d2e-80dd-2e38ad16f43e" alt="" />
-                <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/6efa2acb-5b2f-4966-8028-f724e1930066" alt="" />
+                <svg class="cb-checked-art cb-checked-art--header" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-header-on" width="24" height="24" /></svg>
               </div>
               <div class="title-text">
                 <span>由</span>
                 <span>HKTVmall</span>
                 <span>運送</span>
               </div>
-              <img
-                class="chev"
-                src="https://www.figma.com/api/mcp/asset/06af69a2-603f-404e-acdc-00fc8e403523"
-                alt=""
-                id="toggle-hktvmall"
-              />
+              <svg class="chev" id="toggle-hktvmall" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <use href="#icon-chev-up-white" width="24" height="24" />
+              </svg>
             </div>
 
             <div class="hktvmall-group__body" data-name="List">
               <div class="threshold-box" data-name="Threshold">
                 <div class="threshold-line">
-                  <img class="ico" src="https://www.figma.com/api/mcp/asset/2371ee45-a8bd-4b8f-a7cc-f00b4aa32f30" alt="" />
+                  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-store" width="24" height="24" /></svg>
                   <p>所有商品 到店自取免運費</p>
                 </div>
                 <div class="threshold-line threshold-line--free">
-                  <img class="ico" src="https://www.figma.com/api/mcp/asset/ed3205a8-dce6-4673-9295-6e0ed69e72cd" alt="" />
+                  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-truck" width="24" height="24" /></svg>
                   <p>已享免運費 送上門</p>
                 </div>
                 <div class="threshold-line threshold-line--unmet">
-                  <img class="ico" src="https://www.figma.com/api/mcp/asset/14171d16-8be4-4bf2-805f-c8cc3ef90fc9" alt="" />
+                  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-info" width="24" height="24" /></svg>
                   <p>
                     買多 <strong id="hkt-threshold-remaining">$300.00</strong> 可享免運費送上門
                   </p>
                   <button type="button" class="threshold-link">
                     湊單
-                    <img src="https://www.figma.com/api/mcp/asset/315c3f54-112c-415a-9f97-c30dd21ef212" alt="" width="16" height="16" />
+                    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-chev-small" width="16" height="16" /></svg>
                   </button>
                 </div>
                 <div class="threshold-progress-track" aria-hidden="true">
@@ -241,8 +332,7 @@
               <div class="delivery-sub delivery-sub--3" data-name="3hr Delivery Container">
                 <div class="delivery-sub__head" data-name="Delivery Title">
                   <div class="sub-head-cb" aria-hidden="true">
-                    <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                    <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                    <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                   </div>
                   <span class="sub-title">3小時送達</span>
                   <span class="sub-hint">*10AM前落單 今日12:30-15:00送達</span>
@@ -253,11 +343,10 @@
                   <div class="product-row">
                     <article class="product-card">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/6ec7340d-3e93-407e-b117-89e9ea97e4c0" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/3d80fc35-9fd2-4227-9376-1cca1da7225f" alt="" />
                         <div class="grad"></div>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -268,11 +357,10 @@
                     </article>
                     <article class="product-card">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/ff5b7439-22f3-4d41-bb96-fe8c771eee3c" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/67180cdf-f4c2-4664-847d-d4a34ab9d93e" alt="" />
                         <div class="grad"></div>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -283,11 +371,10 @@
                     </article>
                     <article class="product-card">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/f4e65fb8-e453-4b43-bab4-3bc32556f915" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/b64e4ffa-9914-4c16-9e1d-03e23685f3c6" alt="" />
                         <div class="grad"></div>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -298,11 +385,10 @@
                     </article>
                     <article class="product-card">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/4b3a634e-a4d2-4b8e-b035-d1316e34b225" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/b5422bd0-c534-44fb-a162-cc3939334981" alt="" />
                         <div class="grad"></div>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -318,8 +404,7 @@
               <div class="delivery-sub delivery-sub--8" data-name="8hr">
                 <div class="delivery-sub__head">
                   <div class="sub-head-cb" aria-hidden="true">
-                    <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                    <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                    <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                   </div>
                   <span class="sub-title">8小時送達</span>
                   <span class="sub-hint">*1PM前落單 今日18:00-21:00送達</span>
@@ -330,11 +415,10 @@
                   <div class="product-row">
                     <article class="product-card product-card--8">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/202d3315-01b6-44a8-bdcb-8065d11a691c" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/2bdb7ab1-b5ce-4dae-8f6f-496a2e9240a3" alt="" />
                         <div class="grad"></div>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -345,11 +429,10 @@
                     </article>
                     <article class="product-card product-card--8">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/a1b8eb76-6428-45b3-a065-2d1333b8e52c" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/b92ce507-3ad3-4ed1-ad03-c3a4220803c8" alt="" />
                         <div class="grad"></div>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -360,11 +443,10 @@
                     </article>
                     <article class="product-card product-card--8">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/1bd0ddc3-e075-430c-9cd7-8fdbd3915624" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/c04bc774-d161-46b7-a7ed-e13ab6cc9560" alt="" />
                         <div class="grad"></div>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -375,11 +457,10 @@
                     </article>
                     <article class="product-card product-card--8">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/c27b5953-fa69-4062-b81f-28f2cd0704cc" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/c8ff5440-6cdd-48d2-83d6-9b73f879f9c8" alt="" />
                         <div class="grad"></div>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -392,11 +473,10 @@
                   <div class="product-row">
                     <article class="product-card product-card--8">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/978ea72a-2abb-4716-9ed4-530e3d690836" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/1e33e776-d661-4c9c-bec6-2b56638a4db8" alt="" />
                         <div class="grad"></div>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -407,11 +487,10 @@
                     </article>
                     <article class="product-card product-card--8">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/4ed9bd83-2aea-4385-8eda-fd5ebf3265a1" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/90b5f6fc-0a21-4a12-9b1a-69b85803e8d3" alt="" />
                         <div class="grad"></div>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -428,8 +507,7 @@
               <div class="delivery-sub delivery-sub--tmr" data-name="Tmr">
                 <div class="delivery-sub__head delivery-sub__head--tmr">
                   <div class="sub-head-cb" aria-hidden="true">
-                    <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                    <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                    <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                   </div>
                   <span class="sub-title sub-title--tmr">明天送達</span>
                 </div>
@@ -439,11 +517,10 @@
                   <div class="product-row">
                     <article class="product-card product-card--tmr">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/61690ec0-ca52-48d2-8cad-0ebbfab679d7" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/2ac32b91-7edf-4ef4-9e22-5abd48850eef" alt="" />
                         <div class="grad"></div>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -454,12 +531,11 @@
                     </article>
                     <article class="product-card product-card--tmr">
                       <div class="img-wrap">
-                        <img class="photo" src="https://www.figma.com/api/mcp/asset/d42715fc-a0c1-4d21-a0ec-4156c46209db" alt="" />
+                        <img class="photo" src="https://www.figma.com/api/mcp/asset/f94e7c45-cf0c-47d0-928f-89a8045226a5" alt="" />
                         <div class="grad"></div>
                         <span class="corner-qty-badge" aria-hidden="true">x2</span>
                         <div class="check-pos" aria-hidden="true">
-                          <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                          <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                          <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                         </div>
                         <button type="button" class="qty" aria-label="更改數量">x1</button>
                       </div>
@@ -478,8 +554,7 @@
           <div class="merchant-group" id="merchant-group" data-name="Merchant">
             <div class="merchant-group__head" id="toggle-merchant-head">
               <div class="cb-white cb-white--on-blue" aria-hidden="true">
-                <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/a64714aa-7447-4d2e-80dd-2e38ad16f43e" alt="" />
-                <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/6efa2acb-5b2f-4966-8028-f724e1930066" alt="" />
+                <svg class="cb-checked-art cb-checked-art--header" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-header-on" width="24" height="24" /></svg>
               </div>
               <div class="merchant-group__title">
                 <span>由</span>
@@ -487,25 +562,27 @@
                 <span>運送</span>
                 <span class="merchant-hint">(3-4日送達)</span>
               </div>
-              <img class="chev merchant-chev" src="https://www.figma.com/api/mcp/asset/06af69a2-603f-404e-acdc-00fc8e403523" alt="" id="toggle-merchant-chev" />
+              <svg class="chev merchant-chev" id="toggle-merchant-chev" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <use href="#icon-chev-up-white" width="24" height="24" />
+              </svg>
             </div>
             <div class="merchant-group__body" id="merchant-group-body">
               <div class="merchant-threshold">
                 <div class="merchant-threshold__inner">
                   <div class="merchant-threshold__row">
-                    <img class="merchant-threshold__ico" src="https://www.figma.com/api/mcp/asset/ed602c61-f464-40e5-9c71-3f76bcccf1d0" alt="" />
+                    <svg class="merchant-threshold__ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-alert" width="24" height="24" /></svg>
                     <p class="merchant-threshold__txt">
                       商戶派送商品 <strong>不能於自取點自取</strong>
                     </p>
                   </div>
                   <div class="merchant-threshold__row merchant-threshold__row--delivery">
-                    <img class="merchant-threshold__ico" src="https://www.figma.com/api/mcp/asset/14171d16-8be4-4bf2-805f-c8cc3ef90fc9" alt="" />
+                    <svg class="merchant-threshold__ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-info" width="24" height="24" /></svg>
                     <p class="merchant-threshold__txt merchant-threshold__txt--grow">
                       買多 <strong>$201.00</strong> 可享免運費送上門
                     </p>
                     <button type="button" class="merchant-threshold__link">
                       湊單
-                      <img src="https://www.figma.com/api/mcp/asset/315c3f54-112c-415a-9f97-c30dd21ef212" alt="" width="16" height="16" />
+                      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-chev-small" width="16" height="16" /></svg>
                     </button>
                   </div>
                 </div>
@@ -516,11 +593,10 @@
               <div class="product-row merchant-sku-row">
                 <article class="product-card">
                   <div class="img-wrap">
-                    <img class="photo" src="https://www.figma.com/api/mcp/asset/15b73d85-61d0-4e6f-bae7-c842f61467c6" alt="" />
+                    <img class="photo" src="https://www.figma.com/api/mcp/asset/4fa9fbbe-b35a-4549-99a8-a4ab3abc7bac" alt="" />
                     <div class="grad"></div>
                     <div class="check-pos" aria-hidden="true">
-                      <img class="cb-layer" src="https://www.figma.com/api/mcp/asset/47c8317a-d346-4042-a751-0256aa41fdf6" alt="" />
-                      <img class="cb-tick" src="https://www.figma.com/api/mcp/asset/b2b638f7-41b0-4891-9dea-6ba85354ebc9" alt="" />
+                      <svg class="cb-checked-art" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cb-solid-on" width="24" height="24" /></svg>
                     </div>
                     <button type="button" class="qty" aria-label="更改數量">x1</button>
                   </div>
@@ -540,42 +616,42 @@
           <section class="sheet-card sheet-card--oos" data-name="OOS">
             <div class="sheet-card__title-row">
               <h2 class="sheet-card__title">暫時缺貨/無法購買 (5)</h2>
-              <img src="https://www.figma.com/api/mcp/asset/027f5248-15e2-4229-b63f-d868ec5f3869" alt="" width="24" height="24" />
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-chev-right" width="24" height="24" /></svg>
             </div>
             <div class="oos-row">
               <div class="oos-item">
                 <div class="oos-img">
-                  <img src="https://www.figma.com/api/mcp/asset/f1851296-dc0d-4e34-910a-6a8a1e3fd92d" alt="" />
+                  <img src="https://www.figma.com/api/mcp/asset/51926867-2b2a-40eb-b21a-df2dd2079843" alt="" />
                   <button type="button" class="oos-fav" aria-label="收藏">
-                    <img src="https://www.figma.com/api/mcp/asset/88ec4636-f9b5-4dc2-9231-febb11d18152" alt="" width="18" height="18" />
+                    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-heart" width="24" height="24" /></svg>
                   </button>
                   <div class="oos-overlay"><span>暫時缺貨</span></div>
                 </div>
                 <button type="button" class="oos-remove">
-                  <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                  <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-trash" width="24" height="24" /></svg>
                   移除
                 </button>
               </div>
               <div class="oos-item">
                 <div class="oos-img">
-                  <img src="https://www.figma.com/api/mcp/asset/862248a7-324b-4fb1-be27-e6dbd1a73870" alt="" />
+                  <img src="https://www.figma.com/api/mcp/asset/7922fd58-0d6a-4f67-853b-0901993b2ccd" alt="" />
                   <button type="button" class="oos-fav" aria-label="收藏">
-                    <img src="https://www.figma.com/api/mcp/asset/88ec4636-f9b5-4dc2-9231-febb11d18152" alt="" width="18" height="18" />
+                    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-heart" width="24" height="24" /></svg>
                   </button>
                   <div class="oos-overlay"><span>店舖休息</span></div>
                 </div>
                 <button type="button" class="oos-remove">
-                  <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                  <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-trash" width="24" height="24" /></svg>
                   移除
                 </button>
               </div>
               <div class="oos-item">
                 <div class="oos-img">
-                  <img src="https://www.figma.com/api/mcp/asset/1cfd5b37-e2b2-408e-9924-b30ddc54aeb6" alt="" />
+                  <img src="https://www.figma.com/api/mcp/asset/379d3162-f7c0-4bc5-a6aa-35136a3521f0" alt="" />
                   <div class="oos-overlay"><span>已失效</span></div>
                 </div>
                 <button type="button" class="oos-remove">
-                  <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                  <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-trash" width="24" height="24" /></svg>
                   移除
                 </button>
               </div>
@@ -589,18 +665,18 @@
                 <h2 class="sheet-card__title">過去30日未買 (20)</h2>
                 <p class="sheet-card__sub">商品若擺放超過90日，系統將自動清除</p>
               </div>
-              <img src="https://www.figma.com/api/mcp/asset/027f5248-15e2-4229-b63f-d868ec5f3869" alt="" width="24" height="24" />
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-chev-right" width="24" height="24" /></svg>
             </div>
             <div class="np-row">
               <div class="np-card">
                 <div class="np-img-wrap">
-                  <img src="https://www.figma.com/api/mcp/asset/62cecc19-3bbf-4531-8785-e7b3cd41df3e" alt="" />
+                  <img src="https://www.figma.com/api/mcp/asset/47916c17-d6cf-494f-8e9b-22f63ea83549" alt="" />
                   <div class="np-promo">
-                    <img class="np-promo-decor" src="https://www.figma.com/api/mcp/asset/52776fe8-4b85-4111-91b4-1fa87bc2e592" alt="" />
+                    <svg class="np-promo-decor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-promo-tag" width="24" height="24" /></svg>
                     買滿$280減$28
                   </div>
                   <button type="button" class="np-fav" aria-label="收藏">
-                    <img src="https://www.figma.com/api/mcp/asset/88ec4636-f9b5-4dc2-9231-febb11d18152" alt="" width="18" height="18" />
+                    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-heart" width="24" height="24" /></svg>
                   </button>
                 </div>
                 <p class="np-title">BLACKMORES - 高濃度無腥味魚油丸 迷你膠囊 400 粒</p>
@@ -610,23 +686,23 @@
                 </div>
                 <div class="np-actions">
                   <button type="button" class="oos-remove np-remove">
-                    <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-trash" width="24" height="24" /></svg>
                     移除
                   </button>
                   <button type="button" class="np-cart" aria-label="加入購物車">
-                    <img src="https://www.figma.com/api/mcp/asset/4acc4842-798e-4600-a002-72bf00b60767" alt="" width="20" height="20" />
+                    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cart-white" width="24" height="24" /></svg>
                   </button>
                 </div>
               </div>
               <div class="np-card">
                 <div class="np-img-wrap">
-                  <img src="https://www.figma.com/api/mcp/asset/61fde1a5-9946-425f-b58a-33afe1b4042a" alt="" />
+                  <img src="https://www.figma.com/api/mcp/asset/fe7ca429-de74-404c-bcfe-4224be6bc08a" alt="" />
                   <div class="np-promo">
-                    <img class="np-promo-decor" src="https://www.figma.com/api/mcp/asset/52776fe8-4b85-4111-91b4-1fa87bc2e592" alt="" />
+                    <svg class="np-promo-decor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-promo-tag" width="24" height="24" /></svg>
                     $25.9換購鳥龍茶
                   </div>
                   <button type="button" class="np-fav" aria-label="收藏">
-                    <img src="https://www.figma.com/api/mcp/asset/88ec4636-f9b5-4dc2-9231-febb11d18152" alt="" width="18" height="18" />
+                    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-heart" width="24" height="24" /></svg>
                   </button>
                 </div>
                 <p class="np-title">維他 - 錫蘭檸檬茶 250ml x 6包裝 (新舊包裝隨機發送)</p>
@@ -636,23 +712,23 @@
                 </div>
                 <div class="np-actions">
                   <button type="button" class="oos-remove np-remove">
-                    <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-trash" width="24" height="24" /></svg>
                     移除
                   </button>
                   <button type="button" class="np-cart" aria-label="加入購物車">
-                    <img src="https://www.figma.com/api/mcp/asset/4acc4842-798e-4600-a002-72bf00b60767" alt="" width="20" height="20" />
+                    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cart-white" width="24" height="24" /></svg>
                   </button>
                 </div>
               </div>
               <div class="np-card">
                 <div class="np-img-wrap">
-                  <img src="https://www.figma.com/api/mcp/asset/f536c3dd-2007-48bf-8937-ea1f60166f86" alt="" />
+                  <img src="https://www.figma.com/api/mcp/asset/35015847-4084-4768-8f77-bacb244830de" alt="" />
                   <div class="np-promo">
-                    <img class="np-promo-decor" src="https://www.figma.com/api/mcp/asset/52776fe8-4b85-4111-91b4-1fa87bc2e592" alt="" />
+                    <svg class="np-promo-decor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-promo-tag" width="24" height="24" /></svg>
                     買滿$388減$28
                   </div>
                   <button type="button" class="np-fav" aria-label="收藏">
-                    <img src="https://www.figma.com/api/mcp/asset/88ec4636-f9b5-4dc2-9231-febb11d18152" alt="" width="18" height="18" />
+                    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-heart" width="24" height="24" /></svg>
                   </button>
                 </div>
                 <p class="np-title">滴潔 - [2支優惠裝] 99.9%除菌 高效去除油漬 洗潔精 800ml</p>
@@ -662,11 +738,11 @@
                 </div>
                 <div class="np-actions">
                   <button type="button" class="oos-remove np-remove">
-                    <img src="https://www.figma.com/api/mcp/asset/2690a13b-1911-428a-a6b1-4c1fb28ac803" alt="" width="16" height="16" />
+                    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-trash" width="24" height="24" /></svg>
                     移除
                   </button>
                   <button type="button" class="np-cart" aria-label="加入購物車">
-                    <img src="https://www.figma.com/api/mcp/asset/4acc4842-798e-4600-a002-72bf00b60767" alt="" width="20" height="20" />
+                    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cart-white" width="24" height="24" /></svg>
                   </button>
                 </div>
               </div>
@@ -679,7 +755,7 @@
               <h2 class="sheet-card__title">購物靈感</h2>
               <div class="inspire-see-all">
                 <span>查看全部</span>
-                <img src="https://www.figma.com/api/mcp/asset/027f5248-15e2-4229-b63f-d868ec5f3869" alt="" width="24" height="24" />
+                <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-chev-right" width="24" height="24" /></svg>
               </div>
             </div>
             <div class="inspire-body">
@@ -691,9 +767,9 @@
               <div class="inspire-grid">
                 <article class="inspire-card">
                   <div class="inspire-card__img">
-                    <img src="https://www.figma.com/api/mcp/asset/07487bf4-ac70-49b5-8fd4-4df3187b3cbe" alt="" />
+                    <img src="https://www.figma.com/api/mcp/asset/9fdc90e0-9e29-41c5-9808-ae9f5c454348" alt="" />
                     <div class="inspire-promo">
-                      <img src="https://www.figma.com/api/mcp/asset/2432f67a-431d-4dc9-91de-d38620c6bb98" alt="" class="inspire-promo-corner" />
+                      <svg class="inspire-promo-corner" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#icon-promo-corner" width="24" height="24" /></svg>
                       108/198/398...
                     </div>
                   </div>
@@ -706,14 +782,14 @@
                     <p class="inspire-ppp">$60.00</p>
                   </div>
                   <button type="button" class="inspire-cart" aria-label="加入購物車">
-                    <img src="https://www.figma.com/api/mcp/asset/eeb7f1b5-509a-4d80-83b8-7d1319fb4266" alt="" width="20" height="20" />
+                    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cart-white" width="24" height="24" /></svg>
                   </button>
                 </article>
                 <article class="inspire-card">
                   <div class="inspire-card__img">
-                    <img src="https://www.figma.com/api/mcp/asset/d9dcbf59-795f-4dce-9409-7185864acb0e" alt="" />
+                    <img src="https://www.figma.com/api/mcp/asset/bfba6cbd-f418-4b5a-883b-c403f0172f3c" alt="" />
                     <div class="inspire-promo">
-                      <img src="https://www.figma.com/api/mcp/asset/2432f67a-431d-4dc9-91de-d38620c6bb98" alt="" class="inspire-promo-corner" />
+                      <svg class="inspire-promo-corner" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#icon-promo-corner" width="24" height="24" /></svg>
                       $99.9換UCC...
                     </div>
                   </div>
@@ -725,14 +801,14 @@
                     <p class="inspire-price-red">$63.80</p>
                   </div>
                   <button type="button" class="inspire-cart" aria-label="加入購物車">
-                    <img src="https://www.figma.com/api/mcp/asset/eeb7f1b5-509a-4d80-83b8-7d1319fb4266" alt="" width="20" height="20" />
+                    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cart-white" width="24" height="24" /></svg>
                   </button>
                 </article>
                 <article class="inspire-card">
                   <div class="inspire-card__img">
-                    <img src="https://www.figma.com/api/mcp/asset/5c7578f2-afd4-4cc4-906e-89f2f5525342" alt="" />
+                    <img src="https://www.figma.com/api/mcp/asset/a95e345c-2c39-4883-8421-1bca313cf8e5" alt="" />
                     <div class="inspire-promo">
-                      <img src="https://www.figma.com/api/mcp/asset/2432f67a-431d-4dc9-91de-d38620c6bb98" alt="" class="inspire-promo-corner" />
+                      <svg class="inspire-promo-corner" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#icon-promo-corner" width="24" height="24" /></svg>
                       $99.9換UCC咖啡
                     </div>
                   </div>
@@ -744,7 +820,7 @@
                     <p class="inspire-price-red">$82.00</p>
                   </div>
                   <button type="button" class="inspire-cart" aria-label="加入購物車">
-                    <img src="https://www.figma.com/api/mcp/asset/eeb7f1b5-509a-4d80-83b8-7d1319fb4266" alt="" width="20" height="20" />
+                    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-cart-white" width="24" height="24" /></svg>
                   </button>
                 </article>
               </div>
@@ -759,7 +835,7 @@
           <div class="total" data-name="Total">
             <div class="total__row">
               <p class="total__price" id="total-price">$362.00</p>
-              <img class="total__chev" src="https://www.figma.com/api/mcp/asset/c8482275-00ed-412f-bbce-54bcfad53d2e" alt="" />
+              <svg class="total__chev" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-chev-up" width="24" height="24" /></svg>
             </div>
             <p class="save">節省$39.9</p>
           </div>
@@ -779,22 +855,13 @@
           aria-labelledby="checkout-confirm-title"
         >
           <div class="checkout-confirm-grabber-wrap">
-            <img
-              class="checkout-confirm-grabber"
-              src="https://www.figma.com/api/mcp/asset/ea46c064-dfa6-4374-bb47-c54de3cbe975"
-              alt=""
-            />
+            <svg class="checkout-confirm-grabber" width="48" height="6" viewBox="0 0 48 6" aria-hidden="true" focusable="false"><use href="#icon-grabber" width="48" height="6" /></svg>
           </div>
           <div class="checkout-confirm-header">
             <div class="checkout-confirm-header__spacer" aria-hidden="true"></div>
             <h2 id="checkout-confirm-title" class="checkout-confirm-title">結帳</h2>
             <button type="button" class="checkout-confirm-close" id="checkout-confirm-close" aria-label="關閉">
-              <img
-                src="https://www.figma.com/api/mcp/asset/e21a2740-5c53-4f48-ae0e-10a057318611"
-                alt=""
-                width="14"
-                height="14"
-              />
+              <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-close" width="24" height="24" /></svg>
             </button>
           </div>
 
@@ -818,13 +885,7 @@
                     aria-label="更改送貨時段"
                   >
                     <span id="checkout-delivery-time" class="checkout-confirm-row__value"></span>
-                    <img
-                      class="checkout-confirm-chevron"
-                      src="https://www.figma.com/api/mcp/asset/1769f912-2a41-4670-a87b-4cddea24c53e"
-                      alt=""
-                      width="24"
-                      height="24"
-                    />
+                    <svg class="checkout-confirm-chevron" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-chev-right" width="24" height="24" /></svg>
                   </button>
                 </div>
               </div>
@@ -839,13 +900,7 @@
                       Ricky Wong<span class="checkout-confirm-address-gap"> </span>98299999
                     </p>
                   </div>
-                  <img
-                    class="checkout-confirm-chevron"
-                    src="https://www.figma.com/api/mcp/asset/1769f912-2a41-4670-a87b-4cddea24c53e"
-                    alt=""
-                    width="24"
-                    height="24"
-                  />
+                  <svg class="checkout-confirm-chevron" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-chev-right" width="24" height="24" /></svg>
                 </div>
               </div>
               <div class="checkout-confirm-row checkout-confirm-row--last">
@@ -853,13 +908,7 @@
                 <div class="checkout-confirm-row__value-wrap checkout-confirm-row__value-wrap--pay">
                   <span class="checkout-confirm-pay-method">VISA</span>
                   <span class="checkout-confirm-pay-last4">**** 3309</span>
-                  <img
-                    class="checkout-confirm-chevron"
-                    src="https://www.figma.com/api/mcp/asset/1769f912-2a41-4670-a87b-4cddea24c53e"
-                    alt=""
-                    width="24"
-                    height="24"
-                  />
+                  <svg class="checkout-confirm-chevron" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-chev-right" width="24" height="24" /></svg>
                 </div>
               </div>
             </div>
@@ -897,11 +946,7 @@
                   <span id="checkout-shipping" class="checkout-amount-line__value">$0.0</span>
                 </div>
                 <div class="checkout-amount-line">
-                  <span class="checkout-amount-line__label checkout-amount-line__label--info">
-                    平台費
-                    
-                    </span>
-                  </span>
+                  <span class="checkout-amount-line__label checkout-amount-line__label--info">平台費</span>
                   <span id="checkout-platform" class="checkout-amount-line__value">$3.0</span>
                 </div>
                 <div class="checkout-amount-line">
@@ -936,12 +981,7 @@
             <div class="timeslot-sheet__head-spacer" aria-hidden="true"></div>
             <h3 id="timeslot-title" class="timeslot-sheet__title">HKTVmall 送貨時段</h3>
             <button type="button" class="timeslot-sheet__close" id="timeslot-close" aria-label="關閉">
-              <img
-                src="https://www.figma.com/api/mcp/asset/e21a2740-5c53-4f48-ae0e-10a057318611"
-                alt=""
-                width="14"
-                height="14"
-              />
+              <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-close" width="24" height="24" /></svg>
             </button>
           </div>
           <div class="timeslot-segment" role="tablist" aria-label="送貨方式">

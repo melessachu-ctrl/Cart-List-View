@@ -93,7 +93,8 @@ body {
   gap: 7px;
 }
 
-.status-bar__icons img {
+.status-bar__icons img,
+.status-bar__icons svg {
   display: block;
   height: auto;
 }
@@ -120,7 +121,9 @@ body {
 .checkout-bar .total__chev,
 .merchant-chev,
 .sheet-card__title-row > img,
-.inspire-see-all img {
+.sheet-card__title-row > svg,
+.inspire-see-all img,
+.inspire-see-all svg {
   object-fit: contain;
   object-position: center;
 }
@@ -425,19 +428,11 @@ body {
   position: relative;
 }
 
-.select-all-bar .cb-img .cb-layer {
+.select-all-bar .cb-img .cb-checked-art {
   position: absolute;
   inset: 12.5%;
   width: 75%;
   height: 75%;
-}
-
-.select-all-bar .cb-img .cb-tick {
-  position: absolute;
-  left: 31.25%;
-  top: 33.18%;
-  width: 37.5%;
-  height: 33.33%;
 }
 
 .img-sizes {
@@ -502,19 +497,11 @@ body {
   position: relative;
 }
 
-.hktvmall-group__head .cb-white .cb-layer {
+.hktvmall-group__head .cb-white .cb-checked-art {
   position: absolute;
   inset: 12.5%;
   width: 75%;
   height: 75%;
-}
-
-.hktvmall-group__head .cb-white .cb-tick {
-  position: absolute;
-  left: 31.25%;
-  top: 33.18%;
-  width: 37.5%;
-  height: 33.33%;
 }
 
 .hktvmall-group__head .title-text {
@@ -526,8 +513,8 @@ body {
 }
 
 .hktvmall-group__head .chev {
-  width: 11px;
-  height: 6px;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
   display: block;
   cursor: pointer;
@@ -563,7 +550,9 @@ body {
   min-height: 20px;
 }
 
-.threshold-line img.ico {
+.threshold-line img.ico,
+.threshold-line svg.ico {
+  overflow: visible;
   width: 18px;
   height: 18px;
   flex-shrink: 0;
@@ -686,19 +675,11 @@ body {
   flex-shrink: 0;
 }
 
-.sub-head-cb .cb-layer {
+.sub-head-cb .cb-checked-art {
   position: absolute;
   inset: 12.5%;
   width: 75%;
   height: 75%;
-}
-
-.sub-head-cb .cb-tick {
-  position: absolute;
-  left: 31.25%;
-  top: 33.18%;
-  width: 37.5%;
-  height: 33.33%;
 }
 
 .product-rows {
@@ -788,20 +769,11 @@ body {
   height: 32px;
 }
 
-.product-card .img-wrap .check-pos .cb-layer {
+.product-card .img-wrap .check-pos .cb-checked-art {
   position: absolute;
   inset: 12.5%;
   width: 75%;
   height: 75%;
-  object-fit: contain;
-}
-
-.product-card .img-wrap .check-pos .cb-tick {
-  position: absolute;
-  left: 31.25%;
-  top: 33.18%;
-  width: 37.5%;
-  height: 33.33%;
   object-fit: contain;
 }
 
@@ -1828,19 +1800,11 @@ body {
   flex-shrink: 0;
 }
 
-.cb-white--on-blue .cb-layer {
+.cb-white--on-blue .cb-checked-art {
   position: absolute;
   inset: 12.5%;
   width: 75%;
   height: 75%;
-}
-
-.cb-white--on-blue .cb-tick {
-  position: absolute;
-  left: 31.25%;
-  top: 33.18%;
-  width: 37.5%;
-  height: 33.33%;
 }
 
 .merchant-group__title {
@@ -1868,8 +1832,8 @@ body {
 }
 
 .merchant-chev {
-  width: 11px;
-  height: 6px;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
   display: block;
   transition: transform 0.2s ease;
@@ -1916,6 +1880,7 @@ body {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
+  overflow: visible;
 }
 
 .merchant-threshold__txt {
@@ -1996,7 +1961,9 @@ body {
 }
 
 .sheet-card__title-row > img,
-.inspire-see-all img {
+.sheet-card__title-row > svg,
+.inspire-see-all img,
+.inspire-see-all svg {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
@@ -2456,16 +2423,18 @@ body {
   box-sizing: border-box;
 }
 
-.cb-img .cb-tick,
-.cb-img .cb-layer,
-.cb-white .cb-tick,
-.cb-white .cb-layer,
-.sub-head-cb .cb-tick,
-.sub-head-cb .cb-layer,
-.check-pos .cb-layer,
-.check-pos .cb-tick {
+.cb-img .cb-checked-art,
+.cb-white .cb-checked-art,
+.sub-head-cb .cb-checked-art,
+.check-pos .cb-checked-art {
   opacity: 1;
   transition: opacity 0.15s ease;
+}
+
+.hktvmall-group__head .cb-white.is-unchecked::before,
+.merchant-group__head .cb-white.is-unchecked::before {
+  border-color: rgba(255, 255, 255, 0.95);
+  background: #ffffff;
 }
 
 .cb-img.is-unchecked::before,
@@ -2475,14 +2444,10 @@ body {
   opacity: 1;
 }
 
-.cb-img.is-unchecked .cb-tick,
-.cb-img.is-unchecked .cb-layer,
-.cb-white.is-unchecked .cb-tick,
-.cb-white.is-unchecked .cb-layer,
-.sub-head-cb.is-unchecked .cb-tick,
-.sub-head-cb.is-unchecked .cb-layer,
-.check-pos.is-unchecked .cb-layer,
-.check-pos.is-unchecked .cb-tick {
+.cb-img.is-unchecked .cb-checked-art,
+.cb-white.is-unchecked .cb-checked-art,
+.sub-head-cb.is-unchecked .cb-checked-art,
+.check-pos.is-unchecked .cb-checked-art {
   opacity: 0;
 }
 
